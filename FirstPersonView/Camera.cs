@@ -3,14 +3,14 @@ using RoR2;
 using System.Reflection;
 using UnityEngine;
 
-namespace Camera
+namespace FirstPersonView
 {
-    public partial class Main : BaseUnityPlugin
+    public class Camera : MonoBehaviour
     {
         private const bool shouldShake = false;
 
         //remade the whole function because the original function would otherwise throw an exception
-        private void CameraRigController_SetCameraState(On.RoR2.CameraRigController.orig_SetCameraState orig, CameraRigController self, CameraState cameraState)
+        internal static void CameraRigController_SetCameraState(On.RoR2.CameraRigController.orig_SetCameraState orig, CameraRigController self, CameraState cameraState)
         {
             if (Run.instance)
             {
@@ -76,7 +76,7 @@ namespace Camera
         }
 
         private static FieldInfo currentCameraState;
-        private void currentstate(CameraState cameraState, CameraRigController self)
+        private static void currentstate(CameraState cameraState, CameraRigController self)
         {
             if (currentCameraState == null)
             {
