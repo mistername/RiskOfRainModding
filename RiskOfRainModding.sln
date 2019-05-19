@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoteSaving", "VoteSaving\Vo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextPlus", "TextPlus\TextPlus.csproj", "{89AA2432-BF22-48D7-8BB2-68CFC567EC5E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffDisplayAPI", "BuffDisplayAPI\BuffDisplayAPI.csproj", "{F8F8281D-DDD2-4146-90D0-294159E604EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{89AA2432-BF22-48D7-8BB2-68CFC567EC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89AA2432-BF22-48D7-8BB2-68CFC567EC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89AA2432-BF22-48D7-8BB2-68CFC567EC5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F8281D-DDD2-4146-90D0-294159E604EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F8281D-DDD2-4146-90D0-294159E604EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F8281D-DDD2-4146-90D0-294159E604EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F8281D-DDD2-4146-90D0-294159E604EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
