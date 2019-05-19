@@ -1,14 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
-using JetBrains.Annotations;
 using RoR2;
-using SimpleJSON;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
-using UnityEngine;
 
 namespace VoteSaving
 {
@@ -17,18 +9,12 @@ namespace VoteSaving
     public class VoteSaving : BaseUnityPlugin
     {
         internal const string modname = "VoteSaving";
-        internal const string version = "1.0.0";
+        internal const string version = "1.0.1";
 
-        Dictionary<string, int> savedchoices = new Dictionary<string, int>();
-        internal string path;
+        internal ConfigFile configfile = new ConfigFile("BepInEx\\config\\" + modname + ".cfg", true);
 
         public void Awake()
         {
-            path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            path = path.Substring(0, path.LastIndexOf("BepInEx") + "BepInEx".Length);
-            path += @"\config\" + modname + ".cfg";
-            LoadChoices();
-
             On.RoR2.PreGameRuleVoteController.GetDefaultChoice += PreGameRuleVoteController_GetDefaultChoice;
             On.RoR2.PreGameRuleVoteController.SetVote += PreGameRuleVoteController_SetVote;
         }
@@ -41,82 +27,32 @@ namespace VoteSaving
 
         private void PreGameRuleVoteController_SetVote(On.RoR2.PreGameRuleVoteController.orig_SetVote orig, PreGameRuleVoteController self, int ruleIndex, int choiceValue)
         {
-            string name = RuleCatalog.GetRuleDef(ruleIndex).globalName;
-            if(choiceValue != -1)
+            var ruledef = RuleCatalog.GetRuleDef(ruleIndex);
+            if (!ruledef.category.isHidden)
             {
-                if (savedchoices.ContainsKey(name))
+                if (choiceValue >= 0)
                 {
-                    savedchoices[name] = choiceValue;
+                    string catagorie = ruledef.category.displayToken;
+                    string name = ruledef.globalName;
+                    configfile.Wrap(catagorie, name, null, choiceValue).Value = choiceValue;
                 }
-                else
-                {
-                    savedchoices.Add(name, choiceValue);
-                }
-                WriteChoices();
             }
+
             orig(self, ruleIndex, choiceValue);
         }
 
-        private RuleChoiceDef PreGameRuleVoteController_GetDefaultChoice(On.RoR2.PreGameRuleVoteController.orig_GetDefaultChoice orig, RoR2.PreGameRuleVoteController self, RoR2.RuleDef ruleDef)
+        private RuleChoiceDef PreGameRuleVoteController_GetDefaultChoice(On.RoR2.PreGameRuleVoteController.orig_GetDefaultChoice orig, PreGameRuleVoteController self, RuleDef ruleDef)
         {
-            string name = ruleDef.globalName;
-            if (savedchoices.ContainsKey(name))
-            {
-                return ruleDef.choices[savedchoices[name]];
-            }
-            else
-            {
-                return orig(self, ruleDef);
-            }
-        }
+            int choice = PreGameController.instance.readOnlyRuleBook.GetRuleChoiceIndex(ruleDef);
 
-        private void LoadChoices()
-        {
-            if (File.Exists(path))
+            if (!ruleDef.category.isHidden)
             {
-                var language = File.ReadAllLines(path, Encoding.UTF8);
-                try
-                {
-                    foreach (var sentence in language)
-                    {
-                        var pair = sentence.Split((char)61);
-                        savedchoices.Add(pair[0], int.Parse(pair[1]));
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogFormat("Parsing error in vote file \"{0}\". Error: {1}", new object[]
-                    {
-                        path,
-                        ex
-                    });
-                }
+                string catagory = ruleDef.category.displayToken;
+                string name = ruleDef.globalName;
+                choice = configfile.Wrap(catagory, name, null, choice).Value;
             }
-            else
-            {
-                Debug.Log("Error Loading File");
-            }
-        }
 
-        private void WriteChoices()
-        {
-            var writer = File.CreateText(path);
-            try
-            {
-                foreach (var savedchoice in savedchoices)
-                {
-                    writer.WriteLine(savedchoice.Key + (char)61 + savedchoice.Value.ToString());
-                }
-                writer.Close();
-            }
-            catch (Exception ex)
-            {
-                Debug.LogFormat("writing error in vote file \"{0}\". Error: {1}", new object[]
-                {
-                    path,
-                    ex
-                });
-            }
+            return ruleDef.choices[choice];
         }
     }
 }
