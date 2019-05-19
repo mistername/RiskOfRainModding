@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextPlus", "TextPlus\TextPl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffDisplayAPI", "BuffDisplayAPI\BuffDisplayAPI.csproj", "{F8F8281D-DDD2-4146-90D0-294159E604EA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BanditPlus", "BanditPlus\BanditPlus.csproj", "{8834499D-F315-4DBB-997C-2EDDFBC1335C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F8F8281D-DDD2-4146-90D0-294159E604EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8F8281D-DDD2-4146-90D0-294159E604EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8F8281D-DDD2-4146-90D0-294159E604EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8834499D-F315-4DBB-997C-2EDDFBC1335C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8834499D-F315-4DBB-997C-2EDDFBC1335C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8834499D-F315-4DBB-997C-2EDDFBC1335C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8834499D-F315-4DBB-997C-2EDDFBC1335C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
