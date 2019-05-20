@@ -14,7 +14,7 @@ namespace BalancedObliterate
         internal const string modname = "BalancedObliterate";
         internal const string version = "1.1.0";
 
-        internal static ConfigFile configFile = new ConfigFile("BepInEx\\config\\BalancedObliterate.cfg", true);
+        internal static ConfigFile configFile = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
         internal static float[] difconfigs;
 

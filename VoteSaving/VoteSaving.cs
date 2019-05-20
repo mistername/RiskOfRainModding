@@ -11,7 +11,7 @@ namespace VoteSaving
         internal const string modname = "VoteSaving";
         internal const string version = "1.0.1";
 
-        internal ConfigFile configfile = new ConfigFile("BepInEx\\config\\" + modname + ".cfg", true);
+        internal ConfigFile configfile = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
         public void Awake()
         {

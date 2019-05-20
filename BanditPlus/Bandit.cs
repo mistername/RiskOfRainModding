@@ -20,10 +20,10 @@ namespace BanditPlus
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class BanditMod : BaseUnityPlugin
     {
-        internal const string modname = "Bandit+";
         internal const string version = "4.0.0";
+        internal const string modname = "BanditPlus";
 
-        internal static ConfigFile file = new ConfigFile("BepInEx\\config\\BanditPlus.cfg", true);
+        internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + "BanditPlus.cfg", true);
 
         public void Awake()
         {

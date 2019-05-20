@@ -36,9 +36,8 @@ namespace LanguagePlus
         private void ImportCustomLanguageFiles(string language)
         {
             Dictionary<string, string> dictionary = LoadCustomLanguageDictionary(language);
-            string pathForLanguageFile = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            pathForLanguageFile = pathForLanguageFile.Substring(0, pathForLanguageFile.LastIndexOf("plugins") + "plugins".Length);
-            var files = Directory.GetFiles(pathForLanguageFile, "*.language", SearchOption.AllDirectories);
+
+            var files = Directory.GetFiles(Paths.PluginPath, "*.language", SearchOption.AllDirectories);
             foreach (var file in files)
             {
                 if (File.Exists(file))

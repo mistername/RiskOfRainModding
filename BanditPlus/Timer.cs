@@ -46,8 +46,9 @@ namespace EntityStates.Bandit.Timer
                 }
 
                 var image = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), new Vector2(0, 0));
-                foreach (var plugin in BepInEx.Bootstrap.Chainloader.Plugins)
+                for (int i = 0; i < BepInEx.Bootstrap.Chainloader.Plugins.Count; i++)
                 {
+                    BaseUnityPlugin plugin = BepInEx.Bootstrap.Chainloader.Plugins[i];
                     if (MetadataHelper.GetMetadata(plugin).GUID == "com.mistername.BuffDisplayAPI")
                     {
                         BuffPlus(image);
