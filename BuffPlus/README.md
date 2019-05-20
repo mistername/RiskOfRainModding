@@ -1,5 +1,5 @@
 # BuffPlus
-Adds a timer to buffs
+###Adds a timer to buffs
 	- Almost all Buffs that *the player* get by skills do not get a timer  
 	- Doesn't give timer to buffs that are infinite (I.E. elite buffs).
 	- Doesn't give timer to buffs that do not have a icon.
