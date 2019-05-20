@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffDisplayAPI", "BuffDispl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BanditPlus", "BanditPlus\BanditPlus.csproj", "{8834499D-F315-4DBB-997C-2EDDFBC1335C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoPickup", "NoPickup\NoPickup.csproj", "{6E073FD4-B3ED-4F0B-9586-A5B040723070}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{8834499D-F315-4DBB-997C-2EDDFBC1335C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8834499D-F315-4DBB-997C-2EDDFBC1335C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8834499D-F315-4DBB-997C-2EDDFBC1335C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E073FD4-B3ED-4F0B-9586-A5B040723070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E073FD4-B3ED-4F0B-9586-A5B040723070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E073FD4-B3ED-4F0B-9586-A5B040723070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E073FD4-B3ED-4F0B-9586-A5B040723070}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
