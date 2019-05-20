@@ -1,0 +1,9 @@
+{
+    "name": "VoteSaving",
+    "version_number": "1.0.2",
+    "website_url": "",
+    "description": "Remembers the game votes",
+    "dependencies": [
+        "bbepis-BepInExPack-1.3.1"
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "name": "TextPlus",
+    "version_number": "1.0.2",
+    "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/TextPlus",
+    "description": "Enables custom language loading from BepInEx/plugins",
+    "dependencies": [
+        "bbepis-BepInExPack-1.3.1"
+    ]
+}

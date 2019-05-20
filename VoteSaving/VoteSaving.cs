@@ -9,7 +9,7 @@ namespace VoteSaving
     public class VoteSaving : BaseUnityPlugin
     {
         internal const string modname = "VoteSaving";
-        internal const string version = "1.0.1";
+        internal const string version = "1.0.2";
 
         internal ConfigFile configfile = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 

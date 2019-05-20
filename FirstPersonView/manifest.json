@@ -1,0 +1,9 @@
+{
+    "name": "FirstPersonView",
+    "version_number": "0.1.0",
+    "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/FirstPersonView",
+    "description": "sets the camera to the position of the character",
+    "dependencies": [
+        "bbepis-BepInExPack-1.3.1"
+    ]
+}

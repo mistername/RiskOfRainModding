@@ -12,7 +12,7 @@ namespace BalancedObliterate
     public class BalancedObliterate : BaseUnityPlugin
     {
         internal const string modname = "BalancedObliterate";
-        internal const string version = "1.1.0";
+        internal const string version = "1.1.1";
 
         internal static ConfigFile configFile = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 

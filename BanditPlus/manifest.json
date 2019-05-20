@@ -1,0 +1,9 @@
+{
+    "name": "Banditplus",
+    "version_number": "4.0.1",
+    "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/BanditPlus",
+    "description": "Adds bandit with changes.",
+    "dependencies": [
+        "bbepis-BepInExPack-1.3.1"
+    ]
+}
