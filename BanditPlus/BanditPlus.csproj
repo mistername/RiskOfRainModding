@@ -24,6 +24,9 @@
     <Reference Include="TextMeshPro-1.0.55.2017.1.0b11">
       <HintPath>D:\dll's\TextMeshPro-1.0.55.2017.1.0b11.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>D:\dll's\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>D:\dll's\UnityEngine.dll</HintPath>
     </Reference>

@@ -21,7 +21,7 @@ namespace BanditPlus
     public class BanditMod : BaseUnityPlugin
     {
         internal const string modname = "BanditPlus";
-        internal const string version = "4.0.1";
+        internal const string version = "4.0.2";
 
         internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
