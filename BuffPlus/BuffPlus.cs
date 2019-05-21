@@ -13,7 +13,7 @@ namespace BuffTime
     public class BuffPlus : BaseUnityPlugin
     {
         internal const string modname = "BuffPlus";
-        internal const string version = "1.1.0";
+        internal const string version = "1.1.1";
 
         public void Awake()
         {
