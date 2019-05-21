@@ -13,7 +13,7 @@ namespace BuffDisplayAPI
     public class CustomBuffDisplay : BaseUnityPlugin
     {
         const string version = "0.1.0";
-        const string modname = "BuffDisplay+";
+        const string modname = "BuffDisplayAPI";
 
         private static FieldInfo icons = null;
 

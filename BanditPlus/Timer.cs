@@ -2,7 +2,6 @@
 using BepInEx.Configuration;
 using RoR2;
 using System;
-using System.Collections;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
@@ -11,7 +10,7 @@ namespace EntityStates.Bandit.Timer
 {
     public class Timer : MonoBehaviour
     {
-        public static float fadeout;
+        public static float fadeout = 1f;
 
         internal static ConfigFile file = BanditPlus.BanditMod.file;
 
@@ -19,7 +18,7 @@ namespace EntityStates.Bandit.Timer
 
         public static bool buffplus;
 
-        public static float timeStart;
+        public static float timeStart = 2f;
 
         public static bool numbers = false;
 
@@ -66,15 +65,22 @@ namespace EntityStates.Bandit.Timer
 
         private static void BuffPlus(Sprite image)
         {
-            var buffType = typeof(BuffDisplayAPI.Buff)?.Assembly?.GetType("BuffPlus.Buff", true);
+            //var buffType = typeof(BuffDisplayAPI.Buff)?.Assembly?.GetType("BuffPlus.Buff", true);
 
-            object instance = Activator.CreateInstance(buffType);
+            //object instance = Activator.CreateInstance(buffType);
 
-            buffType.GetField("sprite").SetValue(instance, image);
-            buffType.GetField("type").SetValue(instance, typeof(Counting));
+            //buffType.GetField("sprite").SetValue(instance, image);
+            //buffType.GetField("type").SetValue(instance, typeof(Counting));
 
-            var list = typeof(BuffDisplayAPI.Buff)?.Assembly?.GetType("BuffDisplayAPI.CustomBuffDisplay", true)?.GetField("buffs").GetValue(null);
-            ((IList)list).Add(instance);
+            //var list = typeof(BuffDisplayAPI.Buff)?.Assembly?.GetType("BuffDisplayAPI.CustomBuffDisplay", true)?.GetField("buffs").GetValue(null);
+            //((IList)list).Add(instance);
+
+            BuffDisplayAPI.Buff buff = new BuffDisplayAPI.Buff
+            {
+                sprite = image,
+                type = typeof(Counting)
+            };
+            BuffDisplayAPI.CustomBuffs.Add(buff);
         }
     }
 

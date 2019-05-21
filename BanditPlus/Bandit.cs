@@ -16,7 +16,7 @@ using UnityEngine;
 namespace BanditPlus
 {
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency("com.mistername.BuffDisplay+", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.mistername.BuffDisplayAPI", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class BanditMod : BaseUnityPlugin
     {
