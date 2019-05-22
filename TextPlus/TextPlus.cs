@@ -14,7 +14,7 @@ namespace LanguagePlus
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class Language : BaseUnityPlugin
     {
-        const string modname = "Text+";
+        const string modname = "TextPlus";
         const string version = "1.0.2";
 
         public void Awake()
@@ -26,10 +26,11 @@ namespace LanguagePlus
             On.RoR2.Language.LoadAllFilesForLanguage -= Language_LoadAllFilesForLanguage;
         }
 
-        private void Language_LoadAllFilesForLanguage(On.RoR2.Language.orig_LoadAllFilesForLanguage orig, string language)
+        private bool Language_LoadAllFilesForLanguage(On.RoR2.Language.orig_LoadAllFilesForLanguage orig, string language)
         {
-            orig(language);
+            var tmp = orig(language);
             ImportCustomLanguageFiles(language);
+            return tmp;
         }
 
 
