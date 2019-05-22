@@ -50,7 +50,9 @@ namespace BanditPlus
                     #endif
                     #endregion skills
                     SkillManagement.banditskilldescriptions(bandit);
-                    SurvivorAPI.SurvivorDefinitions.Insert(1, item);
+                    //SurvivorAPI.SurvivorDefinitions.Insert(1, item);
+                    item.survivorIndex = SurvivorIndex.Count + 1;
+                    SurvivorAPI.AddSurvivor(item);
                 }
             };
             #endregion
