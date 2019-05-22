@@ -15,7 +15,7 @@ namespace LanguagePlus
     public class Language : BaseUnityPlugin
     {
         const string modname = "TextPlus";
-        const string version = "1.0.2";
+        const string version = "1.0.3";
 
         public void Awake()
         {
