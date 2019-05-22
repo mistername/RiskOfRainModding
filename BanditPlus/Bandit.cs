@@ -51,7 +51,7 @@ namespace BanditPlus
                     #endregion skills
                     SkillManagement.banditskilldescriptions(bandit);
                     //SurvivorAPI.SurvivorDefinitions.Insert(1, item);
-                    item.survivorIndex = SurvivorIndex.Count + 1;
+                    item.survivorIndex = SurvivorIndex.Count + 631163;
                     SurvivorAPI.AddSurvivor(item);
                 }
             };
