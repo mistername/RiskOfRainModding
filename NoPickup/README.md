@@ -13,6 +13,7 @@ Drop `NoPickup.dll` into `\BepInEx\plugins\`
 		- Config added	
 	- v1.1.1
 		- fixed config and made it clearer
+	- v1.1.2
+		- new ror2 update support
 ## ToDo
 	- add in game config
-		- need to wait for R2API for that

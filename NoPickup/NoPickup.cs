@@ -16,7 +16,7 @@ namespace NoPickup
 
         internal const string modname = "NoPickup";
 
-        internal const string version = "1.1.1";
+        internal const string version = "1.1.2";
 
         internal Dictionary<ItemIndex,Dictionary<string, bool>> dropping = new Dictionary<ItemIndex, Dictionary<string, bool>>();
 
@@ -32,7 +32,7 @@ namespace NoPickup
             var codename = ItemCatalog.GetItemDef(ItemIndex.Bear)?.nameToken;
             if (codename != null)
             {
-                var name = Language.GetString(codename, "EN_US");
+                var name = Language.GetString(codename);
                 if (name != codename)
                 {
                     if (SurvivorCatalog.allSurvivorDefs != null)
