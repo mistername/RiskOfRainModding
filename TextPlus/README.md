@@ -13,3 +13,5 @@ Drop `TextPlus.dll` into `\BepInEx\plugins\`
 		- Small fixes
 	- v1.0.2
 		- fixed plugin folder location
+	- v1.0.3
+		- new ror2 update supported

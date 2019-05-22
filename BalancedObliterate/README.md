@@ -13,3 +13,5 @@ Drop `BalancedObliterate.dll` into `\BepInEx\plugins\`
 		- Added config file for multiplier
 	- v1.1.1
 		- fixed config file location for renamed config folder
+	- v1.1.2
+		- new ror2 update supported

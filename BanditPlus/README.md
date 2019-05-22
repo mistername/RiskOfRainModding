@@ -34,11 +34,13 @@ Drop BanditMod.dll into `\BepInEx\plugins\`
 	- v0.3.4
 		- Fixed error on kill flying enemies.
 	- v0.3.5
-		- Changed how timer worked behind the scene, now acts nicely with other mods that add buffs (not that there is any yet)
+		- Changed how timer worked behind the scene, now acts nicely with other mods that add buffs
 	- v4.0.0
 		- Added a softdependency to https://thunderstore.io/package/mistername/BuffDisplayAPI/
 	- v4.0.1
 		- fixed config file location for renamed config folder
+	- v4.0.2
+		- new ror2 update support
 		
 ## ToDo
 	- Give bandit an unique special skill.
