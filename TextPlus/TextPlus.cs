@@ -43,7 +43,7 @@ namespace LanguagePlus
             {
                 if (File.Exists(file))
                 {
-                    foreach (KeyValuePair<string, string> keyValuePair in LoadCustomTokensFromFile(file))
+                    foreach (KeyValuePair<string, string> keyValuePair in LoadCustomTokensFromFile(file, language))
                     {
                         dictionary[keyValuePair.Key] = keyValuePair.Value;
                     }
@@ -51,14 +51,66 @@ namespace LanguagePlus
             }
         }
 
+        private IEnumerable<KeyValuePair<string, string>> LoadCustomTokensFromFile(string path, string language)
+        {
+            if (File.Exists(path))
+            {
+                var file = File.ReadAllText(path, Encoding.UTF8);
+                try
+                {
+                    JSONNode jsonnode = JSON.Parse(file);
+                    if (jsonnode != null)
+                    {
+                        JSONNode generic = jsonnode["strings"];
+                        if (generic != null)
+                        {
+                            KeyValuePair<string, string>[] array = new KeyValuePair<string, string>[generic.Count];
+                            int num = 0;
+                            foreach (string text in generic.Keys)
+                            {
+                                array[num++] = new KeyValuePair<string, string>(text, generic[text].Value);
+                            }
+                            return array;
+                        }
+
+                        JSONNode specific = jsonnode[language];
+                        if (specific != null)
+                        {
+                            KeyValuePair<string, string>[] array = new KeyValuePair<string, string>[specific.Count];
+                            int num = 0;
+                            foreach (string text in specific.Keys)
+                            {
+                                array[num++] = new KeyValuePair<string, string>(text, specific[text].Value);
+                            }
+                            return array;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogFormat("Parsing error in language file \"{0}\". Error: {1}", new object[]
+                    {
+                        path,
+                        ex
+                    });
+                }
+            }
+            else
+            {
+                Debug.Log("Error Loading File" + path);
+            }
+            return Array.Empty<KeyValuePair<string, string>>();
+        }
+
+        [Obsolete]
         private KeyValuePair<string, string>[] LoadCustomTokensFromFile([NotNull] string path)
         {
             if (File.Exists(path))
             {
-                var language = File.ReadAllText(path, Encoding.UTF8);
+                var file = File.ReadAllText(path, Encoding.UTF8);
                 try
                 {
-                    JSONNode jsonnode = JSON.Parse(language);
+                    JSONNode jsonnode = JSON.Parse(file);
                     if (jsonnode != null)
                     {
                         JSONNode jsonnode2 = jsonnode["strings"];
