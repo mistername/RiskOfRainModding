@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+using System.Linq;
 
 namespace EntityStates.Bandit.Timer
 {
@@ -45,21 +46,18 @@ namespace EntityStates.Bandit.Timer
                 }
 
                 var image = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), new Vector2(0, 0));
-                for (int i = 0; i < BepInEx.Bootstrap.Chainloader.Plugins.Count; i++)
+                buffplus = BepInEx.Bootstrap.Chainloader.Plugins.Exists(p => MetadataHelper.GetMetadata(p).GUID == "com.mistername.BuffDisplayAPI");
+
+                if (buffplus)
                 {
-                    BaseUnityPlugin plugin = BepInEx.Bootstrap.Chainloader.Plugins[i];
-                    if (MetadataHelper.GetMetadata(plugin).GUID == "com.mistername.BuffDisplayAPI")
-                    {
-                        BuffPlus(image);
-                        Debug.Log("using BuffDisplayAPI");
-
-                        buffplus = true;
-
-                        return;
-                    }
+                    BuffPlus(image);
+                    Debug.Log("using BuffDisplayAPI");
                 }
-                BanditPlus.oldbuff.Init(image);
-                buffplus = false;
+                else
+                {
+                    BanditPlus.oldbuff.Init(image);
+                    Debug.Log("using old buff type");
+                }
             }
         }
 
