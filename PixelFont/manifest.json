@@ -1,0 +1,9 @@
+{
+    "name": "PixelFont",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/PixelFont",
+    "description": "Changes the game font to a pixelfont",
+    "dependencies": [
+	"mistername-FontPlus-1.0.0"
+    ]
+}
