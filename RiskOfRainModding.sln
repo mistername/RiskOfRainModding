@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffPlus", "BuffPlus\BuffPl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoBossNoWait", "NoBossNoWait\NoBossNoWait.csproj", "{8CCAFBBB-2E6D-4FA1-9ABB-0DEA0FAE3105}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FontPlus", "Pixelfont\FontPlus.csproj", "{B0C4C797-8B2C-4320-BBD9-BE8B12EDDCF8}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{6DF0E002-639A-4BA3-B4B9-0CA94560D36A}"
 	ProjectSection(SolutionItems) = preProject
 		lib\0Harmony.dll = lib\0Harmony.dll
