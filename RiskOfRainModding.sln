@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffPlus", "BuffPlus\BuffPl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoBossNoWait", "NoBossNoWait\NoBossNoWait.csproj", "{8CCAFBBB-2E6D-4FA1-9ABB-0DEA0FAE3105}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FontPlus", "Pixelfont\FontPlus.csproj", "{B0C4C797-8B2C-4320-BBD9-BE8B12EDDCF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercCombo", "MercCombo\MercCombo.csproj", "{143969E8-B1E5-4109-B4BB-25824DF7822C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModdedQuickplay", "ModdedQuickplay\ModdedQuickplay.csproj", "{A3A98F56-4901-4B6C-9699-7FEB5463C068}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{6DF0E002-639A-4BA3-B4B9-0CA94560D36A}"
 	ProjectSection(SolutionItems) = preProject
@@ -107,6 +109,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{6DF0E002-639
 		lib\UnityEngine.XRModule.dll = lib\UnityEngine.XRModule.dll
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FontPlus", "FontPlus\FontPlus.csproj", "{89207A86-370A-4BE0-A9C4-6E0E9A9403E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PixelFont", "PixelFont", "{93CBCE05-1C1B-43ED-9CC9-B0CB0E19A85C}"
+	ProjectSection(SolutionItems) = preProject
+		PixelFont\asset.font = PixelFont\asset.font
+		PixelFont\icon.png = PixelFont\icon.png
+		PixelFont\manifest.json = PixelFont\manifest.json
+		PixelFont\README.md = PixelFont\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -149,6 +161,18 @@ Global
 		{8CCAFBBB-2E6D-4FA1-9ABB-0DEA0FAE3105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CCAFBBB-2E6D-4FA1-9ABB-0DEA0FAE3105}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CCAFBBB-2E6D-4FA1-9ABB-0DEA0FAE3105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143969E8-B1E5-4109-B4BB-25824DF7822C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143969E8-B1E5-4109-B4BB-25824DF7822C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143969E8-B1E5-4109-B4BB-25824DF7822C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143969E8-B1E5-4109-B4BB-25824DF7822C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A98F56-4901-4B6C-9699-7FEB5463C068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A98F56-4901-4B6C-9699-7FEB5463C068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A98F56-4901-4B6C-9699-7FEB5463C068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A98F56-4901-4B6C-9699-7FEB5463C068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89207A86-370A-4BE0-A9C4-6E0E9A9403E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89207A86-370A-4BE0-A9C4-6E0E9A9403E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89207A86-370A-4BE0-A9C4-6E0E9A9403E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89207A86-370A-4BE0-A9C4-6E0E9A9403E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
