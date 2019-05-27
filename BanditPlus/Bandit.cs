@@ -39,7 +39,8 @@ namespace BanditPlus
                         descriptionToken = "test",
                         displayPrefab = Resources.Load<GameObject>("Prefabs/Characters/BanditDisplay"),
                         primaryColor = new Color(0.87890625f, 0.662745098f, 0.3725490196f),
-                        unlockableName = ""
+                        unlockableName = "",
+                        survivorIndex = SurvivorIndex.Count
                     };
                     #region skills
                     #if skills
@@ -50,8 +51,6 @@ namespace BanditPlus
                     #endif
                     #endregion skills
                     SkillManagement.banditskilldescriptions(bandit);
-                    //SurvivorAPI.SurvivorDefinitions.Insert(1, item);
-                    item.survivorIndex = SurvivorIndex.Count + 631163;
                     SurvivorAPI.AddSurvivor(item);
                 }
             };
