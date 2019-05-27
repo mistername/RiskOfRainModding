@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace BuffDisplayAPI
 {
-    [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class CustomBuffDisplay : BaseUnityPlugin
     {

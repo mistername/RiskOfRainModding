@@ -4,7 +4,6 @@
     "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/BuffDisplayAPI",
     "description": "Enables modders to add custom buffs to the buff bar",
     "dependencies": [
-      "bbepis-BepInExPack-2.0.0",
-      "tristanmcpherson-R2API-2.0.5"
+      "bbepis-BepInExPack-2.0.0"
     ]
 }
