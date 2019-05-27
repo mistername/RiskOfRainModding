@@ -11,13 +11,13 @@ namespace Pixelfont
         internal const string modname = "FontPlus";
         internal const string version = "1.0.0";
 
-        UnityEngine.AssetBundle assetBundle;
+        TMPro.TMP_FontAsset font;
 
         public void Awake()
         {
             try
             {
-                assetBundle = UnityEngine.AssetBundle.LoadFromFile(getFont());
+                font = UnityEngine.AssetBundle.LoadFromFile(getFont()).LoadAllAssets<TMPro.TMP_FontAsset>()[0];
             }
             catch (Exception ex)
             {
@@ -31,12 +31,12 @@ namespace Pixelfont
         private void Language_SetCurrentLanguage(On.RoR2.Language.orig_SetCurrentLanguage orig, string language)
         {
             orig(language);
-            RoR2.UI.HGTextMeshProUGUI.defaultLanguageFont = assetBundle.LoadAllAssets<TMPro.TMP_FontAsset>()[0];
+            RoR2.UI.HGTextMeshProUGUI.defaultLanguageFont = font;
         }
 
         private void HGTextMeshProUGUI_OnCurrentLanguageChanged(On.RoR2.UI.HGTextMeshProUGUI.orig_OnCurrentLanguageChanged orig)
         {
-            RoR2.UI.HGTextMeshProUGUI.defaultLanguageFont = assetBundle.LoadAllAssets<TMPro.TMP_FontAsset>()[0];
+            RoR2.UI.HGTextMeshProUGUI.defaultLanguageFont = font;
         }
 
         private string getFont()
