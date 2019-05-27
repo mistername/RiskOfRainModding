@@ -7,7 +7,9 @@ namespace FirstPersonView
 {
     public class Camera : MonoBehaviour
     {
-        private const bool shouldShake = false;
+        public static bool shouldShake = false;
+
+        public static int height = 0;
 
         //remade the whole function because the original function would otherwise throw an exception
         internal static void CameraRigController_SetCameraState(On.RoR2.CameraRigController.orig_SetCameraState orig, CameraRigController self, CameraState cameraState)
@@ -19,7 +21,7 @@ namespace FirstPersonView
                     var characterposition = self?.localUserViewer?.cachedBody?.corePosition;
                     if (characterposition.HasValue)
                     {
-                        cameraState.position = (Vector3)characterposition;
+                        cameraState.position = (Vector3)characterposition + Vector3.up * height;
                     }
                 }
             }

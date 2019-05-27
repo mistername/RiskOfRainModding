@@ -18,5 +18,18 @@ namespace FirstPersonView
         {
             On.RoR2.CameraRigController.SetCameraState -= Camera.CameraRigController_SetCameraState;
         }
+
+        public void Update()
+        {
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.KeypadPlus))
+            {
+                Camera.height++;                
+            }
+
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.KeypadMinus))
+            {
+                Camera.height--;
+            }
+        }
     }
 }
