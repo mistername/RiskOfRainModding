@@ -1,6 +1,6 @@
 {
     "name": "Banditplus",
-    "version_number": "4.0.2",
+    "version_number": "4.0.3",
     "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/BanditPlus",
     "description": "Adds bandit with changes.",
     "dependencies": [

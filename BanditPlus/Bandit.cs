@@ -21,7 +21,7 @@ namespace BanditPlus
     public class BanditMod : BaseUnityPlugin
     {
         internal const string modname = "BanditPlus";
-        internal const string version = "4.0.2";
+        internal const string version = "4.0.3";
 
         internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
@@ -37,7 +37,7 @@ namespace BanditPlus
                     {
                         bodyPrefab = bandit,
                         descriptionToken = "test",
-                        displayPrefab = Resources.Load<GameObject>("Prefabs/Characters/BanditDisplay"),
+                        displayPrefab = Resources.Load<GameObject>("prefabs/characterbodies/banditbody").GetComponent<ModelLocator>().modelTransform.gameObject,
                         primaryColor = new Color(0.87890625f, 0.662745098f, 0.3725490196f),
                         unlockableName = "",
                         survivorIndex = SurvivorIndex.Count

@@ -41,9 +41,10 @@ Drop BanditMod.dll into `\BepInEx\plugins\`
 		- fixed config file location for renamed config folder
 	- v4.0.2
 		- new ror2 update support
+	- v4.0.3
+		- Added Bandit Display
 		
 ## ToDo
 	- Give bandit an unique special skill.
 	- More fine tuning.
 	- Give bandit an description.
-	- Give bandit an character display.

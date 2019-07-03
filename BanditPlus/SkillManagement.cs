@@ -27,9 +27,9 @@ namespace BanditPlus
             skillslot.activationState = statestype;
         }
 
-        public static void banditskilldescriptions(GameObject gameObject)
+        public static void banditskilldescriptions(GameObject bandit)
         {
-            SkillLocator component = gameObject.GetComponent<SkillLocator>();
+            SkillLocator component = bandit.GetComponent<SkillLocator>();
 
             component.primary.skillNameToken = "Rapidshot";
             component.primary.skillDescriptionToken =
