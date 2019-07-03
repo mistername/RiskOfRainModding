@@ -13,3 +13,6 @@ Drop `SniperUnlock.dll` into `\BepInEx\plugins\`
 		
 	- v1.0.2
 		- Actually updated correctly
+
+	- v1.0.3
+		- Added sniperdisplay

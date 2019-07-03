@@ -1,0 +1,10 @@
+{
+  "name": "HANDunlock",
+  "version_number": "1.0.0",
+  "website_url": "",
+  "description": "unlocks HAND",
+  "dependencies": [
+    "bbepis-BepInExPack-2.0.0",
+	"tristanmcpherson-R2API-2.0.10"
+  ]
+}
