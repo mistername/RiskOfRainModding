@@ -2,6 +2,8 @@
 using BepInEx.Configuration;
 using RoR2;
 
+
+//Doesn't work in multiplayer at all
 namespace VoteSaving
 {
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
