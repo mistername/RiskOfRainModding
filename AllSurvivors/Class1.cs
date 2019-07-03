@@ -8,7 +8,7 @@ namespace AllSurvivors
 {
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
-    public class BanditMod : BaseUnityPlugin
+    public class AllSurvivors : BaseUnityPlugin
     {
         internal const string modname = "AllSurvivors";
         internal const string version = "1.0.0";
