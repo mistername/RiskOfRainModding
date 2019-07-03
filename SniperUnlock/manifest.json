@@ -1,10 +1,10 @@
 {
-    "name": "SniperUnlock",
-    "version_number": "1.0.3",
-    "website_url": "",
-    "description": "Adds sniper to the game. ",
-    "dependencies": [
-        "bbepis-BepInExPack-2.0.0",
-		"tristanmcpherson-R2API-2.0.10"		
-    ]
+  "name": "SniperUnlock",
+  "version_number": "1.0.3",
+  "website_url": "https://thunderstore.io/package/mistername/SniperUnlock/",
+  "description": "Adds sniper to the game. ",
+  "dependencies": [
+    "bbepis-BepInExPack-2.0.0",
+    "tristanmcpherson-R2API-2.0.10"
+  ]
 }
