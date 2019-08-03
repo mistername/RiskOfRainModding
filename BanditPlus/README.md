@@ -43,6 +43,9 @@ Drop BanditMod.dll into `\BepInEx\plugins\`
 		- new ror2 update support
 	- v4.0.3
 		- Added Bandit Display
+	- v4.0.4
+		- Fixed SecondaryTimer
+		- Fixed Ice explosion causing instakill
 		
 ## ToDo
 	- Give bandit an unique special skill.

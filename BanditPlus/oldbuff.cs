@@ -137,6 +137,21 @@ namespace BanditPlus
         public void Awake()
         {
             timeLeft = starttime;
+            GetComponent<CharacterBody>().master.onBodyDeath.AddListener(Killed);
+        }
+
+        public void Killed()
+        {
+            GenericSkill[] skills = { bandit.primary, bandit.secondary, bandit.utility, bandit.special };
+            foreach (var skill in skills)
+            {
+                while (skill.stock < skill.maxStock)
+                {
+                    skill.Reset();
+                }
+            }
+            GetComponent<CharacterBody>().master.onBodyDeath.RemoveListener(Killed);
+            Destroy(this);
         }
 
         public void Update()
@@ -150,20 +165,6 @@ namespace BanditPlus
             {
                 Destroy(this);
             }
-        }
-
-        private void OnKilled()
-        {
-            GenericSkill[] skills = { bandit?.primary, bandit?.secondary, bandit?.utility, bandit?.special };
-            foreach (var skill in skills)
-            {
-                while (skill?.stock < skill?.maxStock)
-                {
-                    skill?.RunRecharge(1f);
-                }
-            }
-
-            Destroy(this);
         }
     }
 }

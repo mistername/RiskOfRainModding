@@ -63,16 +63,6 @@ namespace EntityStates.Bandit.Timer
 
         private static void BuffPlus(Sprite image)
         {
-            //var buffType = typeof(BuffDisplayAPI.Buff)?.Assembly?.GetType("BuffPlus.Buff", true);
-
-            //object instance = Activator.CreateInstance(buffType);
-
-            //buffType.GetField("sprite").SetValue(instance, image);
-            //buffType.GetField("type").SetValue(instance, typeof(Counting));
-
-            //var list = typeof(BuffDisplayAPI.Buff)?.Assembly?.GetType("BuffDisplayAPI.CustomBuffDisplay", true)?.GetField("buffs").GetValue(null);
-            //((IList)list).Add(instance);
-
             BuffDisplayAPI.Buff buff = new BuffDisplayAPI.Buff
             {
                 sprite = image,
@@ -91,6 +81,21 @@ namespace EntityStates.Bandit.Timer
         public void Awake()
         {
             timeLeft = Timer.timeStart;
+            GetComponent<CharacterBody>().master.onBodyDeath.AddListener(Killed);
+        }
+
+        public void Killed()
+        {
+            GenericSkill[] skills = { bandit.primary, bandit.secondary, bandit.utility, bandit.special };
+            foreach (var skill in skills)
+            {
+                while (skill.stock < skill.maxStock)
+                {
+                    skill.Reset();
+                }
+            }
+            GetComponent<CharacterBody>().master.onBodyDeath.RemoveListener(Killed);
+            Destroy(this);
         }
 
         public void Update()
@@ -128,19 +133,6 @@ namespace EntityStates.Bandit.Timer
             {
                 text = string.Empty;
             }
-        }
-
-        public void OnKilled()
-        {
-            GenericSkill[] skills = { bandit?.primary, bandit?.secondary, bandit?.utility, bandit?.special };
-            foreach (var skill in skills)
-            {
-                while (skill?.stock < skill?.maxStock)
-                {
-                    skill?.RunRecharge(1f);
-                }
-            }
-            Destroy(this);
         }
     }
 }
