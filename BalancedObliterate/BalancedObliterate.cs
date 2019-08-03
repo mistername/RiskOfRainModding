@@ -21,10 +21,13 @@ namespace BalancedObliterate
         public void Awake()
         {
             Run.OnServerGameOver += Run_OnServerGameOver;
+
+            //loads language file if not already loaded for config.
             if(Language.GetString("OPTION_OFF", "EN_US") == "OPTION_OFF")
             {
                 Language.LoadAllFilesForLanguage("EN_US");
             }
+
             InitConfig();
         }
 
@@ -95,11 +98,13 @@ namespace BalancedObliterate
 #if DEBUG
         public void Update()
         {
+            //finish stage on F1
             if (Input.GetKeyDown(KeyCode.F1))
             {
                 Run.instance.AdvanceStage(Run.instance.nextStageScene.SceneName);
             }
 
+            //obliterate on F2
             if (Input.GetKeyDown(KeyCode.F2))
             {
                 Run.instance.BeginGameOver(GameResultType.Unknown);
