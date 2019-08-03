@@ -1,0 +1,10 @@
+{
+    "name": "OutOfBounds",
+    "version_number": "0.1.0",
+    "website_url": "",
+    "description": "Disables out of bounds teleport",
+    "dependencies": [
+    "bbepis-BepInExPack-2.0.0",
+	"tristanmcpherson-R2API-2.1.0"
+    ]
+}
