@@ -256,8 +256,4 @@
     </Reference>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="@echo off&#xD;&#xA;cd $(SolutionDir)&#xD;&#xA;set /p location=&lt;plugins_location.txt&#xD;&#xA;IF &quot;%25location%25&quot;==&quot;&quot; (echo &quot;fill plugins_location.txt&quot; GOTO :EOF)&#xD;&#xA;cd $(TargetDir)&#xD;&#xA;copy /B $(TargetFileName) &quot;%25location%25&quot;&#xD;&#xA;pause" />
-  </Target>
-
 </Project>
