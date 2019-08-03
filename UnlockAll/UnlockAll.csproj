@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\lib\Assembly-CSharp.R2API.mm.dll</HintPath>
+      <HintPath>..\lib\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>..\lib\BepInEx.dll</HintPath>
