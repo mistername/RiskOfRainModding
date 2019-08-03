@@ -12,7 +12,7 @@ namespace HANDunlock
     public class BanditMod : BaseUnityPlugin
     {
         internal const string modname = "HANDunlock";
-        internal const string version = "1.0.0";
+        internal const string version = "1.0.1";
 
         internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
@@ -26,7 +26,7 @@ namespace HANDunlock
                     {
                         bodyPrefab = HAND,
                         descriptionToken = "HAND",
-                        displayPrefab = Resources.Load<GameObject>("Prefabs/Characters/HANDDisplay"),
+                        displayPrefab = HAND.GetComponent<ModelLocator>().modelTransform.gameObject,
                         primaryColor = new Color(0.87890625f, 0.662745098f, 0.3725490196f),
                         unlockableName = "",
                         survivorIndex = SurvivorIndex.Count

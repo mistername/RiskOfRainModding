@@ -1,10 +1,10 @@
 {
   "name": "HANDunlock",
-  "version_number": "1.0.0",
-  "website_url": "",
+  "version_number": "1.0.1",
+  "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/HANDunlock",
   "description": "unlocks HAND",
   "dependencies": [
     "bbepis-BepInExPack-2.0.0",
-	"tristanmcpherson-R2API-2.0.10"
+    "tristanmcpherson-R2API-2.0.10"
   ]
 }
