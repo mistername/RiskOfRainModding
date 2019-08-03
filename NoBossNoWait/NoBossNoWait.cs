@@ -1,7 +1,4 @@
 ﻿using BepInEx;
-using System;
-using System.Reflection;
-using UnityEngine;
 
 namespace teleporter
 {
