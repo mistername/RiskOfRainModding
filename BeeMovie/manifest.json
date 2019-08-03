@@ -1,0 +1,9 @@
+{
+    "name": "BeeMoviePlus",
+    "version_number": "1.0.0",
+    "website_url": "",
+    "description": "Writes the bee movie script at 1 line a second during the run",
+    "dependencies": [
+    "bbepis-BepInExPack-2.0.0"
+    ]
+}
