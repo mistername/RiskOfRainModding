@@ -19,23 +19,24 @@ namespace SettingsPlus
 
         public void Awake()
         {
-            On.RoR2.UI.HeaderNavigationController.RebuildHeaders += HeaderNavigationController_RebuildHeaders;
+            On.RoR2.UI.HeaderNavigationController.RebuildHeaders += GenerateNewHeader;
             Convars.Init.Hooks();
         }
 
-        private void HeaderNavigationController_RebuildHeaders(On.RoR2.UI.HeaderNavigationController.orig_RebuildHeaders orig, HeaderNavigationController self)
+        private void GenerateNewHeader(On.RoR2.UI.HeaderNavigationController.orig_RebuildHeaders orig, HeaderNavigationController self)
         {
+            orig(self);
+
             if (!self.headers.Any(p => p.headerName == "Button, custom"))
             {
-                //if (self.headers.Any(p => p.headerName == "Button, Gameplay"))
-                //{
-                    makeconfig(self);
-                //}
+                if (self.headers.Any(p => p.headerName == "Gameplay"))
+                {
+                    MakeHeader(self);
+                }
             }
-            orig(self);
         }
 
-        private void makeconfig(HeaderNavigationController self)
+        private void MakeHeader(HeaderNavigationController self)
         {
 #if DEBUG
             Debug.Log("instance");
@@ -48,10 +49,9 @@ namespace SettingsPlus
 
         private static GameObject makeHeader(HeaderNavigationController self)
         {
-            instanciate(self, out MPButton button, out TMPro.TextMeshProUGUI text, out GameObject root);
+            CreateModButton(self, out MPButton button, out TMPro.TextMeshProUGUI text, out GameObject root);
             button.name = "Button, custom";
-            removoldbutton(button);
-            nameconfigcatagory(text);
+            RemoveTmpButton(button);
             root.name = "SettingsSubPanel, Mods";
 
             var Header = new HeaderNavigationController.Header
@@ -77,7 +77,7 @@ namespace SettingsPlus
             {
                 if (child.gameObject.name != "Option, Vsync")
                 {
-                    //Destroy(child.gameObject);
+                    //Destroy(child.gameObject);ff
                 }
                 else
                 {
@@ -166,14 +166,7 @@ namespace SettingsPlus
             return layout;
         }
 
-        private static void nameconfigcatagory(TMPro.TextMeshProUGUI text)
-        {
-            text.name = "Text, Custom";
-            var token = text.gameObject.GetComponent<LanguageTextMeshController>();
-            token.token = "Mods";
-        }
-
-        private static void removoldbutton(MPButton button)
+        private static void RemoveTmpButton(MPButton button)
         {
             var gameplay = button.transform.Find("Text, Gameplay");
             if (gameplay)
@@ -182,11 +175,15 @@ namespace SettingsPlus
             }
         }
 
-        private static void instanciate(HeaderNavigationController self, out MPButton button, out TMPro.TextMeshProUGUI text, out GameObject root)
+        private static void CreateModButton(HeaderNavigationController self, out MPButton button, out TMPro.TextMeshProUGUI text, out GameObject root)
         {
-            button = Instantiate(self.headers[0].headerButton, self.headers[0].headerButton.transform.parent);
-            text = Instantiate(self.headers[0].tmpHeaderText, button.transform);
-            root = Instantiate(self.headers[0].headerRoot, self.headers[0].headerRoot.transform.parent);
+            button = Instantiate(self.headers[0].headerButton, self.headers[0].headerButton.transform.parent);      //copy button
+
+            text = Instantiate(self.headers[0].tmpHeaderText, button.transform);                                    //copy textmesh field
+            text.name = "Text, Custom";                                                                             //button internal name
+            text.GetComponent<LanguageTextMeshController>().token = "Mods";                                         //button text
+
+            root = Instantiate(self.headers[0].headerRoot, self.headers[0].headerRoot.transform.parent);            //copy headerRoot
         }
     }
 
