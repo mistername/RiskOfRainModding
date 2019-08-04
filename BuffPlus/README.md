@@ -16,7 +16,8 @@ Drop `BuffPlus.dll` into `\BepInEx\plugins\`
 		- Fixed buffs with stacks
 	- v1.1.1
 		- new ror2 update supported
+	- v1.2.0
+		- Added config options and fade out(disabled by default)
 		
 ## ToDo
-	- Customization
 	- Optimization of the code
