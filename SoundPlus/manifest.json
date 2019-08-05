@@ -1,0 +1,11 @@
+{
+    "name": "SoundPlus",
+    "version_number": "0.1.0",
+    "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/SoundPlus",
+    "description": "Loads custom sound files",
+  "dependencies": [
+    "bbepis-BepInExPack-2.0.0",
+    "tristanmcpherson-R2API-2.1.0",
+    "mistername-SoundPlus-0.1.0"
+  ]
+}
