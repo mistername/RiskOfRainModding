@@ -4,146 +4,92 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace SoundPlus
 {
-    [BepInDependency(R2API.R2API.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(R2API.R2API.PluginGUID)]
     [BepInPlugin(modguid, modname, version)]
     public class SoundPlus : BaseUnityPlugin
     {
+        /// <summary>
+        /// Use this in as the dependency string
+        /// </summary>
         public const string modguid = "com.mistername." + modname;
-        internal const string modname = "SoundPlus";
-        internal const string version = "0.1.0";
 
-        public void Awake()
+        internal const string modname = "SoundPlus";
+        internal const string version = "0.2.0";
+
+        internal void Awake()
         {
             On.RoR2.RoR2Application.OnLoad += RoR2Application_OnLoad;
         }
 
         private void RoR2Application_OnLoad(On.RoR2.RoR2Application.orig_OnLoad orig, RoR2Application self)
         {
-            CopySounds();
-
-
-            AddingBank(self, FindBanks());
-
             orig(self);
+
+            AddBank();
         }
 
-        private List<Tuple<string, bool>> FindBanks()
+        private void AddBank()
         {
-            List<Tuple<string, bool>> banks = new List<Tuple<string, bool>>();
+            //finds all .sound files
             var files = Directory.GetFiles(Paths.PluginPath, "*.sound", SearchOption.AllDirectories);
+
+            //adds all .sound files as banks
             foreach (var file in files)
             {
-                if (File.Exists(NameToBank(SoundToName(file))))
-                {
-                    banks.Add(new Tuple<string, bool>(file, false));
-                }
-                else
-                {
-                    banks.Add(new Tuple<string, bool>(file, true));
-                }
+                BankLoading(file);
             }
-            return banks;
-        }
 
-        private static string NameToBank(string tmp)
-        {
-            return AkBasePathGetter.GetPlatformBasePath() + tmp + ".bnk";
-        }
-
-        private static string SoundToName(string file)
-        {
-            var tmp = file.Remove(file.Length - ".sound".Length);
-            var tmparray = tmp.Split('\\');
-            tmp = tmparray[tmparray.Length - 1];
-            return tmp;
-        }
-
-        private static void AddingBank(RoR2Application self, List<Tuple<string, bool>> banks)
-        {
-            foreach (var bank in banks)
+            //adds each added byte[] bank as a soundbank
+            foreach (var bank in SoundBanks.soundBanks)
             {
-                if (bank.Item2)
-                {
-                    File.Copy(bank.Item1, NameToBank(SoundToName(bank.Item1)));
-                }
-
-                var bankname = SoundToName(bank.Item1);
-
-                var custombank = self.wwiseGlobalPrefab.AddComponent<AkBank>();
-                custombank.data.ObjectReference = ScriptableObject.CreateInstance<WwiseBankReference>();
-                custombank.decodeBank = true;
-                custombank.saveDecodedBank = true;
-                typeof(WwiseObjectReference).GetField("objectName", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(custombank.data.ObjectReference, bankname);
+                BankLoading(bank);
             }
         }
 
-        private static void CopySounds()
+        private static void BankLoading(string file)
         {
-            var path = GetDirectoryPath(Assembly.GetExecutingAssembly());
-            path += "/sounds";
-            AkBasePathGetter.FixSlashes(ref path);
-            Debug.Log(path);
+            var bank = File.ReadAllBytes(file);
 
-            var copypath = AkBasePathGetter.GetFullSoundBankPath();
-
-            DirectoryCopy(copypath, path, true);
-
-            AkBasePathGetter.DefaultBasePath = path;
-            ((AkWindowsSettings)AkWwiseInitializationSettings.ActivePlatformSettings).UserSettings.m_BasePath = path;
+            BankLoading(bank);
         }
 
-        public static string GetDirectoryPath(Assembly assembly)
+        private static void BankLoading(byte[] bank)
         {
-            string filePath = new Uri(assembly.CodeBase).LocalPath;
-            return System.IO.Path.GetDirectoryName(filePath);
-        }
+            //Creates IntPtr of sufficient size.
+            IntPtr intPtrBank = Marshal.AllocHGlobal(bank.Length);
 
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+            //copies the byte array to the IntPtr
+            Marshal.Copy(bank, 0, intPtrBank, bank.Length);
+            
+            //Loads the entire IntPtr as a bank
+            var result = AkSoundEngine.LoadBank(intPtrBank, uint.Parse(bank.Length.ToString()), out var bankid);
+            if(result != AKRESULT.AK_Success)
+            {
+                Debug.LogError("WwiseUnity: AkMemBankLoader: bank loading failed with result " + result);
+            }
+        }
+    }
+
+    /// <summary>
+    /// class for SoundBanks to load
+    /// </summary>
+    public static class SoundBanks
+    {
+        /// <summary>
+        /// Adds a soundbank to load
+        /// </summary>
+        /// <param name="bank">byte array of the entire .bnk file</param>
+        public static void Add(byte[] bank)
         {
-
-            if (!Directory.Exists(sourceDirName))
-            {
-                Debug.LogError("sound folder does not exists");
-                return;
-            }
-
-            if (Directory.Exists(destDirName))
-            {
-                Debug.Log("sounds already copied");
-                return;
-            }
-
-            // Get the subdirectories for the specified directory.
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-
-            DirectoryInfo[] dirs = dir.GetDirectories();
-            // If the destination directory doesn't exist, create it.
-            if (!Directory.Exists(destDirName))
-            {
-                Directory.CreateDirectory(destDirName);
-            }
-
-            // Get the files in the directory and copy them to the new location.
-            FileInfo[] files = dir.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                string temppath = System.IO.Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, false);
-            }
-
-            // If copying subdirectories, copy them and their contents to new location.
-            if (copySubDirs)
-            {
-                foreach (DirectoryInfo subdir in dirs)
-                {
-                    string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
-                }
-            }
+            soundBanks.Add(bank);
         }
+
+        internal static List<byte[]> soundBanks = new List<byte[]>();
+
     }
 }
