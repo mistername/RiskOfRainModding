@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SettingsPlus\SettingsPlus.csproj" />
+    <None Remove="SoundPlusExample.sound" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SoundPlusExample.sound" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoundPlus\SoundPlus.csproj" />
   </ItemGroup>
 
   <ItemGroup>
