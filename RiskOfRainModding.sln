@@ -155,6 +155,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmsRace", "ArmsRace\ArmsRa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnlimitedLunar", "UnlimitedLunar\UnlimitedLunar.csproj", "{8683F500-2B50-40F7-B0CB-489B29560AD5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundPlus", "SoundPlus\SoundPlus.csproj", "{E64E75A9-3EB6-4C94-8DD9-C4F36951887F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundPlusExampleEmbedded", "SoundPlusExamples\SoundPlusExampleEmbedded\SoundPlusExampleEmbedded.csproj", "{978F8EF5-9CC7-45C0-B107-9A71082903CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -261,6 +265,14 @@ Global
 		{8683F500-2B50-40F7-B0CB-489B29560AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8683F500-2B50-40F7-B0CB-489B29560AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8683F500-2B50-40F7-B0CB-489B29560AD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E64E75A9-3EB6-4C94-8DD9-C4F36951887F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E64E75A9-3EB6-4C94-8DD9-C4F36951887F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E64E75A9-3EB6-4C94-8DD9-C4F36951887F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E64E75A9-3EB6-4C94-8DD9-C4F36951887F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{978F8EF5-9CC7-45C0-B107-9A71082903CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{978F8EF5-9CC7-45C0-B107-9A71082903CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{978F8EF5-9CC7-45C0-B107-9A71082903CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{978F8EF5-9CC7-45C0-B107-9A71082903CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -291,6 +303,8 @@ Global
 		{43F58611-26A4-4207-B78D-7E2D0BED3B32} = {40DA9EA1-75D4-430A-9ABA-50D48E737591}
 		{3C76A4BC-6C00-4732-B263-8A099298CCF5} = {40DA9EA1-75D4-430A-9ABA-50D48E737591}
 		{8683F500-2B50-40F7-B0CB-489B29560AD5} = {40DA9EA1-75D4-430A-9ABA-50D48E737591}
+		{E64E75A9-3EB6-4C94-8DD9-C4F36951887F} = {40DA9EA1-75D4-430A-9ABA-50D48E737591}
+		{978F8EF5-9CC7-45C0-B107-9A71082903CB} = {40DA9EA1-75D4-430A-9ABA-50D48E737591}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED93AF8-E445-4E62-B708-336B584309CC}
