@@ -1,12 +1,14 @@
-﻿using BepInEx;
+﻿using AssetPlus;
+using BepInEx;
 
 namespace SoundPlusExample
 {
     [BepInDependency(R2API.R2API.PluginGUID)]
-    [BepInDependency(SoundPlus.SoundPlus.modguid)]
+    [BepInDependency(AssetPlus.AssetPlus.modguid)]
     [BepInPlugin(modguid, modname, version)]
     public class SoundPlusExample : BaseUnityPlugin
     {
+
         public const string modguid = "com.mistername." + modname;
 
         //you need to put the .sound bank somewhere in the plugin folder for this to work

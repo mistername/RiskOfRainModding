@@ -19,6 +19,7 @@ namespace UnlimitedLunar
             On.RoR2.UserProfile.XmlUtility.FromXml += XmlUtility_FromXml; ;
         }
 
+        //this should work but it doesn't
         private UserProfile XmlUtility_FromXml(On.RoR2.UserProfile.XmlUtility.orig_FromXml orig, System.Xml.Linq.XDocument doc)
         {
             var profile = orig(doc);
