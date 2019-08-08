@@ -16,6 +16,8 @@ using R2API.Utils;
 namespace TurretPlus
 {
 
+    //paid mod that's handed over to someone else
+
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class TurretPlus : BaseUnityPlugin
