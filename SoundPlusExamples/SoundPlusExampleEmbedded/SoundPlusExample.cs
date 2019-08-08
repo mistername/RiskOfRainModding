@@ -1,6 +1,5 @@
-﻿using BepInEx;
-using R2API;
-using SoundPlus;
+﻿using AssetPlus;
+using BepInEx;
 using System;
 using System.IO;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Reflection;
 namespace SoundPlusExample
 {
     [BepInDependency(R2API.R2API.PluginGUID)]
-    [BepInDependency(SoundPlus.SoundPlus.modguid)]
+    [BepInDependency(AssetPlus.AssetPlus.modguid)]
     [BepInPlugin(modguid, modname, version)]
     public class SoundPlusExample : BaseUnityPlugin
     {
