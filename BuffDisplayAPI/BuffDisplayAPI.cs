@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using R2API;
 
 namespace BuffDisplayAPI
 {
+    [BepInDependency(R2API.R2API.PluginGUID)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class CustomBuffDisplay : BaseUnityPlugin
     {

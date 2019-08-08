@@ -14,6 +14,9 @@
     <Reference Include="MMHOOK_Assembly-CSharp">
       <HintPath>..\lib\MMHOOK_Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="R2API">
+      <HintPath>..\lib\R2API.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\lib\Unity.TextMeshPro.dll</HintPath>
     </Reference>
