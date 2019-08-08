@@ -1,12 +1,15 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using RoR2;
+using UnityEngine;
 
 
 //Doesn't work in multiplayer at all
 namespace VoteSaving
 {
-    [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(R2API.R2API.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class VoteSaving : BaseUnityPlugin
     {
