@@ -36,12 +36,9 @@ namespace BanditPlus
                     var display = Resources.Load<GameObject>("prefabs/characterbodies/banditbody").GetComponent<ModelLocator>().modelTransform.gameObject;
                     display.AddComponent<animation>();
                     var bandit = BodyCatalog.FindBodyPrefab("BanditBody");
-                    bandit.SetActive(false);
-                    var banditclone = Instantiate(bandit);
-                    bandit.SetActive(true);
                     SurvivorDef item = new SurvivorDef
                     {
-                        bodyPrefab = banditclone,
+                        bodyPrefab = bandit,
                         descriptionToken = "test",
                         displayPrefab = display,
                         primaryColor = new Color(0.87890625f, 0.662745098f, 0.3725490196f),
