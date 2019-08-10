@@ -14,9 +14,6 @@ namespace AssetPlus
     {
         internal static void SoundAwake()
         {
-            //for bank loading
-            On.RoR2.RoR2Application.OnLoad += RoR2Application_OnLoad;
-
             //finds all .sound files
             var files = LoadFiles("*.sound");
 
@@ -24,6 +21,9 @@ namespace AssetPlus
             {
                 SoundBanks.Add(file);
             }
+
+            //for bank loading
+            On.RoR2.RoR2Application.OnLoad += RoR2Application_OnLoad;            
 
 #if MUSIC
             //for changing the scene music
@@ -41,22 +41,22 @@ namespace AssetPlus
         private static void AddBank()
         {
             //adds each added byte[] bank as a soundbank
-            foreach (byte[] bank in SoundBanks.soundBanks)
+            foreach (var bank in SoundBanks.soundBanks)
             {
                 BankLoading(bank);
             }
         }
 
-        private static void BankLoading(byte[] bank)
+        private static void BankLoading(SoundBanks.Bank bank)
         {
             //Creates IntPtr of sufficient size.
-            IntPtr intPtrBank = Marshal.AllocHGlobal(bank.Length);
+            bank.Memory = Marshal.AllocHGlobal(bank.BankData.Length);
 
             //copies the byte array to the IntPtr
-            Marshal.Copy(bank, 0, intPtrBank, bank.Length);
+            Marshal.Copy(bank.BankData, 0, bank.Memory, bank.BankData.Length);
 
             //Loads the entire IntPtr as a bank
-            var result = AkSoundEngine.LoadBank(intPtrBank, uint.Parse(bank.Length.ToString()), out var bankid);
+            var result = AkSoundEngine.LoadBank(bank.Memory, uint.Parse(bank.BankData.Length.ToString()), out bank.BankID);
             if (result != AKRESULT.AK_Success)
             {
                 Debug.LogError("WwiseUnity: AkMemBankLoader: bank loading failed with result " + result);
@@ -146,26 +146,66 @@ namespace AssetPlus
     public static class SoundBanks
     {
         /// <summary>
-        /// Adds a soundbank to load
+        /// Adds a soundbank to load, returns the ID used for unloading
         /// </summary>
         /// <param name="bank">byte array of the entire .bnk file</param>
-        public static void Add(byte[] bank)
+        public static uint Add(byte[] bank)
         {
-            soundBanks.Add(bank);
+            var bankToAdd= new Bank(bank);
+            soundBanks.Add(bankToAdd);
+            return bankToAdd.PublicID;
         }
 
         /// <summary>
-        /// Adds an external soundbank to load (.sound files are loaded automatically)
+        /// Adds an external soundbank to load, returns the ID used for unloading (.sound files are loaded automatically)
         /// </summary>
         /// <param name="path">the absolute path to the file</param>
-        public static void Add(string path)
+        public static uint Add(string path)
         {
             byte[] bank = File.ReadAllBytes(path);
 
-            soundBanks.Add(bank);
+            return Add(bank);
         }
 
-        internal static List<byte[]> soundBanks = new List<byte[]>();
+        /// <summary>
+        /// Unloads an bank using the ID (ID is returned at the Add() of the bank)
+        /// </summary>
+        /// <param name="ID">BankID</param>
+        /// <returns></returns>
+        public static AKRESULT Remove(uint ID)
+        {
+            var bankToUnload = soundBanks.Find(bank => bank.PublicID == ID);            
+            var result = AkSoundEngine.UnloadBank(bankToUnload.BankID, bankToUnload.Memory);
+            if(result != AKRESULT.AK_Success)
+            {
+                Debug.LogError("Failed to unload bank " + ID.ToString() + ": " + result.ToString());
+                return result;
+            }
+            Marshal.FreeHGlobal(bankToUnload.Memory);
+            soundBanks.Remove(bankToUnload);
+            return result;
+        }
+
+        internal class Bank
+        {
+            internal Bank(byte[] bankData)
+            {
+                BankData = bankData;
+                PublicID = number++;
+            }
+
+            internal byte[] BankData;
+
+            internal uint PublicID;
+
+            internal IntPtr Memory;
+
+            internal uint BankID;
+        }
+
+        static uint number = 0;
+
+        internal static List<Bank> soundBanks = new List<Bank>();
 
     }
 }

@@ -20,6 +20,8 @@ Drop `AssetPlus.dll` into `\BepInEx\plugins\`
 ## Changelog
 	- v0.1.0
 		- release
+	- v0.1.1
+		- Added support for bank unloading
 
-## ToDo
-	- Bank Unloading
+#todo
+	- add support for custom music

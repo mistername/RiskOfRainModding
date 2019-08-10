@@ -14,7 +14,7 @@ namespace AssetPlus
         public const string modguid = "com.mistername." + modname;
 
         internal const string modname = nameof(AssetPlus);
-        internal const string version = "0.1.0";
+        internal const string version = "0.1.1";
 
         internal void Awake()
         {
