@@ -48,7 +48,7 @@ namespace SoundPlusExample
             var assembly = Assembly.GetExecutingAssembly();
 
             resourceName = assembly.GetManifestResourceNames()
-                .Single(str => str.EndsWith(resourceName));
+                .First(str => str.EndsWith(resourceName));
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (BinaryReader reader = new BinaryReader(stream))

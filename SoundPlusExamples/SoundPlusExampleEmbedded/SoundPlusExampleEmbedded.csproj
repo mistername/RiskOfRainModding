@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="SoundPlusExample.sound" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="SoundPlusExample.cs" />
+    <EmbeddedResource Include="SoundPlusExample.sound">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -34,12 +41,6 @@
     <Reference Include="Wwise">
       <HintPath>..\..\lib\Wwise.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="SoundPlusExample.sound">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
