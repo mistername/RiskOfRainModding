@@ -9,8 +9,6 @@ namespace FirstPersonView
     {
         public static bool shouldShake = false;
 
-        public static int height = 0;
-
         //remade the whole function because the original function would otherwise throw an exception
         internal static void CameraRigController_SetCameraState(On.RoR2.CameraRigController.orig_SetCameraState orig, CameraRigController self, CameraState cameraState)
         {
@@ -21,7 +19,8 @@ namespace FirstPersonView
                     var characterposition = self?.localUserViewer?.cachedBody?.corePosition;
                     if (characterposition.HasValue)
                     {
-                        cameraState.position = (Vector3)characterposition + Vector3.up * height;
+                        var offset = (Main.Off.Value) ? Vector3.zero : (Vector3.up * 0.1f * Main.Height.Value + Vector3.right * 0.1f * Main.right.Value + Vector3.forward * 0.1f * Main.forwards.Value);
+                        cameraState.position = (Vector3)characterposition + offset;
                     }
                 }
             }
