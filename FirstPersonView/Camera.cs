@@ -12,15 +12,25 @@ namespace FirstPersonView
         //remade the whole function because the original function would otherwise throw an exception
         internal static void CameraRigController_SetCameraState(On.RoR2.CameraRigController.orig_SetCameraState orig, CameraRigController self, CameraState cameraState)
         {
-            if (Run.instance)
+            if (Main.FirstPerson.Value)
             {
-                if (self.cameraMode == CameraRigController.CameraMode.PlayerBasic)
+                if (Run.instance)
                 {
-                    var characterposition = self?.localUserViewer?.cachedBody?.corePosition;
-                    if (characterposition.HasValue)
+                    if (self.cameraMode == CameraRigController.CameraMode.PlayerBasic)
                     {
-                        var offset = (Main.Off.Value) ? Vector3.zero : (Vector3.up * 0.1f * Main.Height.Value + Vector3.right * 0.1f * Main.right.Value + Vector3.forward * 0.1f * Main.forwards.Value);
-                        cameraState.position = (Vector3)characterposition + offset;
+                        var characterbody = self?.localUserViewer?.cachedBody;
+                        var characterposition = characterbody?.corePosition;
+                        if (characterposition.HasValue)
+                        {
+                            var direction = characterbody.GetComponent<CharacterDirection>();
+                            var offset = Vector3.zero;
+                            if (direction)
+                            {
+                                offset = direction.transform.up * 0.1f * Main.Height.Value + direction.forward * 0.1f * Main.forwards.Value;
+                            }
+
+                            cameraState.position = (Vector3)characterposition + offset;
+                        }
                     }
                 }
             }

@@ -1,5 +1,9 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
+using RoR2;
+using Unity.Collections;
+using Unity.Jobs;
+using UnityEngine;
 
 namespace FirstPersonView
 {
@@ -8,25 +12,61 @@ namespace FirstPersonView
     public class Main : BaseUnityPlugin
     {
         internal const string modname = "FirstPersonView";
-        internal const string version = "0.2.0";
+        internal const string version = "0.2.3";
 
         internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
         //config values;
         internal static ConfigWrapper<int> Height;
-        internal static ConfigWrapper<int> right;
         internal static ConfigWrapper<int> forwards;
-        internal static ConfigWrapper<bool> Off;
+        internal static ConfigWrapper<bool> FirstPerson;
+        internal static ConfigWrapper<bool> Invisible;
 
         public void Awake()
         {
             On.RoR2.CameraRigController.SetCameraState += Camera.CameraRigController_SetCameraState;
 
+            //for invisible character in first person
+            On.RoR2.Run.Update += Run_Update;
+
+
             Height = file.Wrap(new ConfigDefinition("Camera", "Height"), 0);
-            right = file.Wrap(new ConfigDefinition("Camera", "right"), 0);
             forwards = file.Wrap(new ConfigDefinition("Camera", "forwards"), 0);
-            Off = file.Wrap(new ConfigDefinition("Camera", "Height"), false);
+            FirstPerson = file.Wrap(new ConfigDefinition("Camera", "FirstPerson"), true);
+            Invisible = file.Wrap(new ConfigDefinition("Camera", "Invisible character", "Makes character invisible when first person, should make first person better"), true);
+
+
         }
+
+        private void Run_Update(On.RoR2.Run.orig_Update orig, Run self)
+        {
+            var Models = PlayerCharacterMasterController.instances[0]?.master?.GetBody()?.modelLocator?.modelTransform?.gameObject.GetComponentsInChildren<Renderer>(true);
+            if (Models != null)
+            {
+                if (FirstPerson.Value && Invisible.Value)
+                {
+                    foreach (var CharacterModel in Models)
+                    {
+                        if (CharacterModel.gameObject.activeSelf)
+                        {
+                            CharacterModel.gameObject.SetActive(false);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var CharacterModel in Models)
+                    {
+                        if (!CharacterModel.gameObject.activeSelf)
+                        {
+                            CharacterModel.gameObject.SetActive(true);
+                        }
+                    }
+                }
+            }
+            orig(self);
+        }
+
 
         public void OnDestroy()
         {
@@ -35,24 +75,15 @@ namespace FirstPersonView
 
         public void Update()
         {
+
             if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.KeypadPlus))
             {
-                Height.Value++;    
+                Height.Value++;
             }
 
             if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.KeypadMinus))
             {
                 Height.Value--;
-            }
-
-            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Keypad6))
-            {
-                right.Value++;
-            }
-
-            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Keypad4))
-            {
-                right.Value--;
             }
 
             if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Keypad8))
@@ -65,14 +96,20 @@ namespace FirstPersonView
                 forwards.Value--;
             }
 
-            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Keypad3))
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Keypad5))
             {
-                Off.Value = true;
+                FirstPerson.Value = !FirstPerson.Value;
             }
 
-            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Keypad9))
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.KeypadDivide))
             {
-                Off.Value = false;
+                Height.Value = 0;
+                forwards.Value = 0;
+            }
+
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.KeypadMultiply))
+            {
+                Invisible.Value = !Invisible.Value;
             }
         }
     }
