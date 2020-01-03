@@ -1,0 +1,10 @@
+{
+    "name": "UnlockAll",
+    "version_number": "1.0.4",
+    "website_url": "",
+    "description": "Unlocks every locked thing",
+    "dependencies": [
+        "bbepis-BepInExPack-1.3.1",
+		    "tristanmcpherson-R2API-2.0.10"
+    ]
+}

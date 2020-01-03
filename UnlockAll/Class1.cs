@@ -12,10 +12,15 @@ namespace UnlockAll
     public class UnlockAll : BaseUnityPlugin
     {
         const string modname = "UnlockAll";
-        const string version = "1.0.1";
+        const string version = "1.0.4";
 
         public void Awake()
         {
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey(Hj.HjUpdaterAPI.GUID))
+            {
+                Hj.HjUpdaterAPI.Register(modname);
+            }
+
             On.RoR2.UserProfile.HasUnlockable_string += (o, s, i) => true;
             On.RoR2.UserProfile.HasUnlockable_UnlockableDef += (o, s, i) => true;
             On.RoR2.UserProfile.HasSurvivorUnlocked += (o, s, i) => true;
