@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using EntityStates;
 using System;
 using UnityEngine;
 
@@ -21,13 +22,23 @@ namespace ArmsRace
             On.EntityStates.Drone.DroneWeapon.FireMegaTurret.OnEnter += FireMegaTurret_OnEnter;
             On.EntityStates.Drone.DroneWeapon.FireMissileBarrage.OnEnter += FireMissileBarrage_OnEnter;
             On.EntityStates.Drone.DroneWeapon.FireTwinRocket.OnEnter += FireTwinRocket_OnEnter;
+            //ItemLib.CustomItem customItem = new ItemLib.CustomItem();
+        }
+
+        private void checkMissile(BaseState self)
+        {
+            throw new NotImplementedException();
         }
 
         //TODO after each of these item effect
-        private void FireTwinRocket_OnEnter(On.EntityStates.Drone.DroneWeapon.FireTwinRocket.orig_OnEnter orig, EntityStates.BaseState self)
+        private void FireTwinRocket_OnEnter(On.EntityStates.Drone.DroneWeapon.FireTwinRocket.orig_OnEnter orig, BaseState self)
         {
             orig(self);
+            //if(self.outer.commonComponents.characterBody.inventory.GetItemCount())
+            checkMissile(self);
         }
+
+
 
         private void FireMissileBarrage_OnEnter(On.EntityStates.Drone.DroneWeapon.FireMissileBarrage.orig_OnEnter orig, EntityStates.BaseState self)
         {
