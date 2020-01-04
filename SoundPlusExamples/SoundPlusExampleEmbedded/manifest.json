@@ -1,6 +1,6 @@
 {
   "name": "SoundPlusExample",
-  "version_number": "0.2.0",
+  "version_number": "0.2.1",
   "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/SoundPlusExample",
   "description": "shows loading custom sound files",
   "dependencies": [
