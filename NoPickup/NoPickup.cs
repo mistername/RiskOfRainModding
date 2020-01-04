@@ -16,7 +16,7 @@ namespace NoPickup
 
         internal const string modname = "NoPickup";
 
-        internal const string version = "1.1.2";
+        internal const string version = "1.1.3";
 
         internal Dictionary<ItemIndex,Dictionary<string, bool>> dropping = new Dictionary<ItemIndex, Dictionary<string, bool>>();
 
