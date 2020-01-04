@@ -1,3 +1,7 @@
+
+# now included in r2api
+do not use this
+
 # Sound
 	- Loads custom .bnk files from the plugin folder if they are named .sound instead.
 	- Loads custom .bnk files passed to `AssetPlus.SoundBanks.Add()`.
@@ -22,6 +26,14 @@ Drop `AssetPlus.dll` into `\BepInEx\plugins\`
 		- release
 	- v0.1.1
 		- Added support for bank unloading
+	- v0.1.2
+		- text
+			- Added support for single tokens from code, generic or per language
+		- sound
+			- Added bank loading during runtime (automatically gets done on an Add after the normal point)
+		- fonts
+			- nothing
+		- xml
+			- Added the documentation to the zip
 
 #todo
-	- add support for custom music
