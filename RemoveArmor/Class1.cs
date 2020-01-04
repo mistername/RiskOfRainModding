@@ -11,7 +11,7 @@ namespace RemoveArmor
     public class RemoveArmor : BaseUnityPlugin
     {
         internal const string modname = "RemoveArmor";
-        internal const string version = "1.0.0";
+        internal const string version = "1.0.1";
 
         public void Awake()
         {
