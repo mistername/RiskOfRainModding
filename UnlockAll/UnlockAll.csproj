@@ -20,6 +20,9 @@
       <HintPath>..\lib\MMHOOK_Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="R2API">
+      <HintPath>..\lib\R2API.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\lib\UnityEngine.dll</HintPath>
       <Private>false</Private>

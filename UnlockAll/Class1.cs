@@ -1,13 +1,12 @@
 ﻿using BepInEx;
 using RoR2;
-using System;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace UnlockAll
 {
-    [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(R2API.R2API.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(Hj.HjUpdaterAPI.GUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class UnlockAll : BaseUnityPlugin
     {
