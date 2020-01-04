@@ -12,7 +12,7 @@ namespace HANDunlock
     public class BanditMod : BaseUnityPlugin
     {
         internal const string modname = "HANDunlock";
-        internal const string version = "1.0.1";
+        internal const string version = "1.0.2";
 
         internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
@@ -21,15 +21,15 @@ namespace HANDunlock
             SurvivorAPI.SurvivorCatalogReady += delegate (object s, EventArgs e)
             {
                 {
-                    var HAND = BodyCatalog.FindBodyPrefab("HANDBody");
+                    var Bandit = BodyCatalog.FindBodyPrefab("BanditBody");
                     SurvivorDef item = new SurvivorDef
                     {
-                        bodyPrefab = HAND,
-                        descriptionToken = "HAND",
-                        displayPrefab = HAND.GetComponent<ModelLocator>().modelTransform.gameObject,
+                        bodyPrefab = Bandit,
+                        descriptionToken = "Bandit",
+                        displayPrefab = Bandit.GetComponent<ModelLocator>().modelTransform.gameObject,
                         primaryColor = new Color(0.87890625f, 0.662745098f, 0.3725490196f),
                         unlockableName = "",
-                        survivorIndex = SurvivorIndex.Count
+                        survivorIndex = (SurvivorIndex)int.MaxValue
                     };
                     SurvivorAPI.AddSurvivor(item);
                 }
