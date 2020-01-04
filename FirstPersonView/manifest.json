@@ -1,6 +1,6 @@
 {
     "name": "FirstPersonView",
-    "version_number": "0.2.3",
+    "version_number": "0.2.4",
     "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/FirstPersonView",
     "description": "Now with config and keys to control it ingame",
   "dependencies": [

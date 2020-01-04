@@ -12,7 +12,7 @@ namespace FirstPersonView
     public class Main : BaseUnityPlugin
     {
         internal const string modname = "FirstPersonView";
-        internal const string version = "0.2.3";
+        internal const string version = "0.2.4";
 
         internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
@@ -34,7 +34,7 @@ namespace FirstPersonView
             forwards = file.Wrap(new ConfigDefinition("Camera", "forwards"), 0);
             FirstPerson = file.Wrap(new ConfigDefinition("Camera", "FirstPerson"), true);
             Invisible = file.Wrap(new ConfigDefinition("Camera", "Invisible character", "Makes character invisible when first person, should make first person better"), true);
-
+            
 
         }
 
