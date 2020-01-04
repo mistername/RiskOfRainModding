@@ -8,22 +8,22 @@ using BepInEx.Configuration;
 using EntityStates;
 using EntityStates.Bandit;
 using EntityStates.Bandit.Timer;
-using EntityStates.Commando.CommandoWeapon;
 using R2API;
 using RoR2;
+using RoR2.Skills;
 using System;
 using System.Collections;
 using UnityEngine;
 
 namespace BanditPlus
 {
-    [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(R2API.R2API.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.mistername.BuffDisplayAPI", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class BanditMod : BaseUnityPlugin
     {
         internal const string modname = "BanditPlus";
-        internal const string version = "4.0.4";
+        internal const string version = "0.4.5";
 
         internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
@@ -33,27 +33,27 @@ namespace BanditPlus
             SurvivorAPI.SurvivorCatalogReady += delegate (object s, EventArgs e)
             {
                 {
-                    var display = Resources.Load<GameObject>("prefabs/characterbodies/banditbody").GetComponent<ModelLocator>().modelTransform.gameObject;
-                    display.AddComponent<animation>();
                     var bandit = BodyCatalog.FindBodyPrefab("BanditBody");
+                    //var display = bandit?.GetComponent<ModelLocator>()?.modelTransform?.gameObject;
+                    
                     SurvivorDef item = new SurvivorDef
                     {
                         bodyPrefab = bandit,
                         descriptionToken = "test",
-                        displayPrefab = display,
+                        displayPrefab = bandit,//bandit.GetComponent<CharacterBody>().modelLocator.modelTransform.gameObject,
                         primaryColor = new Color(0.87890625f, 0.662745098f, 0.3725490196f),
                         unlockableName = "",
                         survivorIndex = SurvivorIndex.Count
                     };
                     #region skills
-                    #if skills
+#if skills
                     Primary.SetPrimary(bandit);
                     PrepSecondary.SetSecondary(bandit);
                     Banditspecial(bandit);
                     EntityStates.Bandit.Utility.SetUtility(bandit);
-                    #endif
+#endif
                     #endregion skills
-                    SkillManagement.banditskilldescriptions(bandit);
+                    //SkillManagement.banditskilldescriptions(bandit);
                     SurvivorAPI.AddSurvivor(item);
                 }
             };
@@ -73,21 +73,25 @@ namespace BanditPlus
         {
             while (true)
             {
-            if(BodyCatalog.FindBodyPrefab("BanditBody") != null)
-            {
-                if (BodyCatalog.FindBodyPrefab("BanditBody").GetComponent<SetStateOnHurt>() != null)
+                GameObject bandit = BodyCatalog.FindBodyPrefab("BanditBody");
+                if (bandit != null)
                 {
-                    if (BodyCatalog.FindBodyPrefab("BanditBody").GetComponent<SetStateOnHurt>().idleStateMachine != null)
+                    SetStateOnHurt setStateOnHurt = bandit.GetComponent<SetStateOnHurt>();
+                    if (setStateOnHurt != null)
                     {
-                        if (BodyCatalog.FindBodyPrefab("BanditBody").GetComponent<SetStateOnHurt>().idleStateMachine.Length != 0)
+                        var ildeStateMachine = setStateOnHurt.idleStateMachine;
+                        if (ildeStateMachine != null)
                         {
-                            BodyCatalog.FindBodyPrefab("BanditBody").GetComponent<SetStateOnHurt>().idleStateMachine[0] = BodyCatalog.FindBodyPrefab("BanditBody").GetComponent<SetStateOnHurt>().idleStateMachine[1];
-                            yield return null;
+                            
+                            if (ildeStateMachine.Length != 0)
+                            {
+                                ildeStateMachine[0] = ildeStateMachine[1];
+                                yield return null;
+                            }
                         }
                     }
                 }
-            }
-            yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
             }
         }
 
@@ -95,13 +99,13 @@ namespace BanditPlus
         {
             internal void OnEnable()
             {
-                if(gameObject.transform.parent.gameObject.name == "CharacterPad")
+                if (gameObject.transform.parent.gameObject.name == "CharacterPad")
                 {
 #if DEBUG
                     Debug.Log("animation");
 #endif
                     Animation();
-                    
+
                 }
 #if DEBUG
                 else
@@ -115,14 +119,14 @@ namespace BanditPlus
             private void Animation()
             {
                 IEnumerator coroutine;
-                if (RoR2Application.rng.nextBool)
-                {
+                //if (RoR2Application.rng.nextBool)
+                //{
                     coroutine = Fire();
-                }
-                else
-                {
-                    coroutine = Impact();
-                }
+                //}
+                //else
+                //{
+                //    coroutine = Impact();
+                //}
                 StartCoroutine(coroutine);
             }
 
@@ -180,33 +184,38 @@ namespace BanditPlus
 
         private void Banditspecial(GameObject gameObject)
         {
-            SkillLocator component = gameObject.GetComponent<SkillLocator>();
-            GenericSkill special = component.special;
-            GenericSkill genericSkill = gameObject.AddComponent<GenericSkill>();
+            var component = gameObject.GetComponent<SkillLocator>();
+            var special = component.special;
 
-            genericSkill.skillName = "Mortar";
-            genericSkill.baseRechargeInterval = 5f;
-            genericSkill.baseMaxStock = 1;
-            genericSkill.rechargeStock = 1;
-            genericSkill.isBullets = false;
-            genericSkill.shootDelay = 0.3f;
-            genericSkill.beginSkillCooldownOnSkillEnd = false;
-            genericSkill.stateMachine = component.special.stateMachine;
-            genericSkill.activationState = new SerializableEntityStateType(typeof(EntityStates.Toolbot.AimStunDrone));
-            genericSkill.interruptPriority = InterruptPriority.Skill;
-            genericSkill.isCombatSkill = true;
-            genericSkill.noSprint = false;
-            genericSkill.canceledFromSprinting = false;
-            genericSkill.mustKeyPress = true;
-            genericSkill.requiredStock = 1;
-            genericSkill.stockToConsume = 1;
-            genericSkill.hasExecutedSuccessfully = false;
-            genericSkill.icon = special.icon;
+            var skillDef = (SkillDef)ScriptableObject.CreateInstance(typeof(SkillDef));
 
-            Destroy(special);
-            SkillManagement.SetSkill(ref genericSkill, typeof(EntityStates.Toolbot.AimStunDrone));
+            skillDef.skillName = "Mortar";
+            skillDef.baseRechargeInterval = 5f;
+            skillDef.baseMaxStock = 1;
+            skillDef.rechargeStock = 1;
+            skillDef.isBullets = false;
+            skillDef.shootDelay = 0.3f;
+            skillDef.beginSkillCooldownOnSkillEnd = false;
+            skillDef.activationState = new SerializableEntityStateType(typeof(EntityStates.Toolbot.AimStunDrone));
+            skillDef.interruptPriority = InterruptPriority.Skill;
+            skillDef.isCombatSkill = true;
+            skillDef.noSprint = false;
+            skillDef.canceledFromSprinting = false;
+            skillDef.mustKeyPress = true;
+            skillDef.requiredStock = 1;
+            skillDef.stockToConsume = 1;
+            //skillDef.icon = special.icon;
 
-            component.special = genericSkill;
+            var variant = new SkillFamily.Variant
+            {
+                skillDef = skillDef
+            };
+
+
+            var skillFamily = special.skillFamily;
+
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length);
+            skillFamily.variants[skillFamily.variants.Length -1] = variant;
         }
     }
 }

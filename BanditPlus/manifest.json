@@ -1,10 +1,10 @@
 {
     "name": "Banditplus",
-    "version_number": "4.0.4",
+    "version_number": "0.4.5",
     "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/BanditPlus",
     "description": "Adds bandit with changes.",
   "dependencies": [
     "bbepis-BepInExPack-2.0.0",
-    "tristanmcpherson-R2API-2.1.0"
+    "tristanmcpherson-R2API-2.1.15"
   ]
 }
