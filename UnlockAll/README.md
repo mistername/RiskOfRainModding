@@ -16,3 +16,5 @@ Drop `UnlockAll.dll` into `\BepInEx\plugins\`
 
   - v1.0.4
     - version bump to new game version and support for HjUpdaterAPI
+  - v1.0.5
+    - HjUpdaterAPI now correctly a softdependency
