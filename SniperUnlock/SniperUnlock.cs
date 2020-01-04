@@ -12,7 +12,7 @@ namespace HANDunlock
     public class BanditMod : BaseUnityPlugin
     {
         internal const string modname = "SniperUnlock";
-        internal const string version = "1.0.3";
+        internal const string version = "1.0.4";
 
         internal static ConfigFile file = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
@@ -26,10 +26,10 @@ namespace HANDunlock
                     {
                         bodyPrefab = sniper,
                         descriptionToken = "Sniper",
-                        displayPrefab = sniper.GetComponent<ModelLocator>().modelTransform.gameObject,
+                        displayPrefab = sniper,//.GetComponent<ModelLocator>().modelTransform.gameObject,
                         primaryColor = new Color(0.87890625f, 0.662745098f, 0.3725490196f),
                         unlockableName = "",
-                        survivorIndex = SurvivorIndex.Count
+                        survivorIndex = (SurvivorIndex) int.MaxValue
                     };
                     SurvivorAPI.AddSurvivor(item);
                 }
