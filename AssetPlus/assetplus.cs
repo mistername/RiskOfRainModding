@@ -1,31 +1,29 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using System.IO;
+using System.Text;
+using AK.Wwise;
 
 namespace AssetPlus
 {
-
+    /// <summary>
+    /// Simple class for adding all the individual classes together, use for modguid
+    /// </summary>
     [BepInDependency(R2API.R2API.PluginGUID)]
-    [BepInPlugin(modguid, modname, version)]
-    public partial class AssetPlus : BaseUnityPlugin
+    [BepInPlugin(modguid, _modName, version)]
+    public class AssetPlus : BaseUnityPlugin
     {
         /// <summary>
         /// Use this in as the dependency string
         /// </summary>
-        public const string modguid = "com.mistername." + modname;
+        public const string modguid = "com.mistername." + _modName;
 
-        internal const string modname = nameof(AssetPlus);
-        internal const string version = "0.1.1";
+        private const string _modName = nameof(AssetPlus);
+        internal const string version = "6.6.6";
 
         internal void Awake()
         {
-            SoundAwake();
-            FontAwake();
-            LanguageAwake();
-        }
-
-        private static string[] LoadFiles(string searchFor)
-        {
-            return Directory.GetFiles(Paths.PluginPath, searchFor, SearchOption.AllDirectories);
+            UnityEngine.Debug.LogWarning("assetplus is deprecated and now included in r2api, please use that");
         }
     }
 }
