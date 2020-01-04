@@ -1,0 +1,9 @@
+{
+    "name": "KoreanFix",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/KoreanFix",
+    "description": "Fixes the missing characters in RoR2 turning into ? with a custom font",
+  "dependencies": [
+    "mistername-AssetPlus-0.1.2"
+  ]
+}
