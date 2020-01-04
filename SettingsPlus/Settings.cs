@@ -11,7 +11,7 @@ namespace SettingsPlus
     {
         public class BaseCustomSetting
         {
-            public BaseCustomSetting(BaseConVar boolConvar, string settingName, string settingText = null)
+            public BaseCustomSetting(BaseConVar boolConvar, string settingName, string settingText = null, string optionalText = "")
             {
                 conVar = boolConvar;
 
@@ -25,6 +25,10 @@ namespace SettingsPlus
                 {
                     settingtext = settingText;
                 }
+
+                this.optionalText = optionalText;
+
+                listSettings.Add(this);
             }
 
             public BaseConVar conVar;
@@ -33,30 +37,25 @@ namespace SettingsPlus
 
             public string settingtext;
 
-            public Type type;
+            public string optionalText;
         }
         
         public class CustomBoolSetting : BaseCustomSetting
         {
-            public CustomBoolSetting(Convars.BoolConvar boolConvar, string settingName, string settingText = null) : base(boolConvar, settingName, settingText)
+            public CustomBoolSetting(Convars.BoolConvar boolConvar, string settingName, string settingText = null, string optionalText = "") : base(boolConvar, settingName, settingText, optionalText)
             {
-                type = typeof(CustomBoolSetting);
-                listSettings.Add(this);
+                
             }
         }
 
         public class CustomMultichoiceSetting : BaseCustomSetting
         {
-            public CustomMultichoiceSetting(Convars.StringConVar boolConvar, string settingName, List<choice> choices,string settingText = null) : base(boolConvar, settingName, settingText)
+            public CustomMultichoiceSetting(Convars.StringConVar boolConvar, string settingName, List<choice> choices, string settingText = null, string optionalText = "") : base(boolConvar, settingName, settingText, optionalText)
             {
-                type = typeof(CustomMultichoiceSetting);
-
                 Choices = choices.ToArray();
-
-                listSettings.Add(this);
             }
 
-            public choice[] Choices;
+            internal choice[] Choices;
 
             public struct choice
             {
