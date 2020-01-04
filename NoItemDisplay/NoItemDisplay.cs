@@ -8,7 +8,7 @@ namespace NoItemDisplay
     public class NoItemDisplay : BaseUnityPlugin
     {
         internal const string modname = nameof(NoItemDisplay);
-        internal const string version = "1.0.0";
+        internal const string version = "1.0.1";
 
         public void Awake()
         {

@@ -1,6 +1,6 @@
 {
     "name": "NoItemDisplay",
-    "version_number": "1.0.0",
+    "version_number": "1.0.1",
     "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/NoItemDisplay",
     "description": "Prevents item display on characters",
     "dependencies": [
