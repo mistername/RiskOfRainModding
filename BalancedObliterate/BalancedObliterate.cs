@@ -7,12 +7,13 @@ using UnityEngine;
 
 namespace BalancedObliterate
 {
-    [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(R2API.R2API.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(Hj.HjUpdaterAPI.GUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class BalancedObliterate : BaseUnityPlugin
     {
         internal const string modname = "BalancedObliterate";
-        internal const string version = "1.1.1";
+        internal const string version = "1.1.6";
 
         internal static ConfigFile configFile = new ConfigFile(Paths.ConfigPath + "\\" + modname + ".cfg", true);
 
@@ -20,6 +21,11 @@ namespace BalancedObliterate
 
         public void Awake()
         {
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey(Hj.HjUpdaterAPI.GUID))
+            {
+                Updater();
+            }
+
             Run.OnServerGameOver += Run_OnServerGameOver;
 
             //loads language file if not already loaded for config.
@@ -29,6 +35,11 @@ namespace BalancedObliterate
             }
 
             InitConfig();
+        }
+
+        private static void Updater()
+        {
+            Hj.HjUpdaterAPI.Register(modname);
         }
 
         public void onDestroy()
@@ -66,30 +77,26 @@ namespace BalancedObliterate
 
         internal static bool configfloat(string catagorie, string description, float defaultvalue, out float value)
         {
-            bool tmp = float.TryParse(configFile.Wrap(catagorie, description, null, defaultvalue.ToString()).Value, out value);
-            if (!tmp)
-            {
-                Debug.LogError(catagorie + " " + description + " " + "is formatted wrong");
-            }
-            return tmp;
+            ConfigDefinition configDefinition = new ConfigDefinition(catagorie, description);
+            var bindConfig = configFile.Bind(configDefinition, defaultvalue);
+            value = bindConfig.Value;
+            return true;
         }
 
         private void Run_OnServerGameOver(Run run, GameResultType gameResultType)
         {
-            if (gameResultType == GameResultType.Unknown || gameResultType == GameResultType.Won)
+            if (gameResultType != GameResultType.Unknown && gameResultType != GameResultType.Won) return;
+            float multiplier = difconfigs[(int)run.selectedDifficulty];
+            float lunarcoins = (run.stageClearCount * multiplier) - 5f;
+            if (lunarcoins > 0)
             {
-                float multiplier = difconfigs[(int)run.selectedDifficulty];
-                float lunarcoins = (run.stageClearCount * multiplier) - 5f;
-                if (lunarcoins > 0)
+                uint totalcoins = Convert.ToUInt32(Math.Ceiling(lunarcoins));
+                for (int i = 0; i < NetworkUser.readOnlyInstancesList.Count; i++)
                 {
-                    uint totalcoins = Convert.ToUInt32(Math.Ceiling(lunarcoins));
-                    for (int i = 0; i < NetworkUser.readOnlyInstancesList.Count; i++)
+                    NetworkUser networkUser = NetworkUser.readOnlyInstancesList[i];
+                    if (networkUser && networkUser.isParticipating)
                     {
-                        NetworkUser networkUser = NetworkUser.readOnlyInstancesList[i];
-                        if (networkUser && networkUser.isParticipating)
-                        {
-                            networkUser.AwardLunarCoins(totalcoins);
-                        }
+                        networkUser.AwardLunarCoins(totalcoins);
                     }
                 }
             }

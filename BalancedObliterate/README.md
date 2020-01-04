@@ -1,6 +1,7 @@
 # BalancedObliterate
 	- Gives amount of stages times difficulty multiplier as coins on run end
 	- Difficulty multiplier is configurable in `BepInEx\config\BalancedObliterate.cfg`
+    - Supports [HjUpdaterAPI](https://thunderstore.io/package/Lodington/HjUpdaterAPI/) as soft dependency for auto updating 
 
 ## Installation
 Drop `BalancedObliterate.dll` into `\BepInEx\plugins\`
@@ -15,3 +16,5 @@ Drop `BalancedObliterate.dll` into `\BepInEx\plugins\`
 		- fixed config file location for renamed config folder
 	- v1.1.2
 		- new ror2 update supported
+    - v1.1.5
+        - added HjUpdaterAPI support

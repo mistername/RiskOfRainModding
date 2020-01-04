@@ -1,8 +1,8 @@
 {
     "name": "BalancedObliterate",
-    "version_number": "1.1.2",
+    "version_number": "1.1.6",
     "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/BalancedObliterate",
-    "description": "Gives amount of stages finished times a difficulty modifier  as lunarcoins on Obliterate",
+    "description": "Gives amount of stages finished times a difficulty modifier as lunarcoins on Obliterate",
     "dependencies": [
     "bbepis-BepInExPack-2.0.0"
     ]
