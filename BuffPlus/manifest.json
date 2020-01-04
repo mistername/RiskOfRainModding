@@ -1,6 +1,6 @@
 {
     "name": "BuffPlus",
-    "version_number": "1.2.0",
+    "version_number": "1.2.1",
     "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/BuffPlus",
     "description": "Adds Timers to buffs.",
     "dependencies": [

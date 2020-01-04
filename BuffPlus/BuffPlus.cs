@@ -14,7 +14,7 @@ namespace BuffTime
     public class BuffPlus : BaseUnityPlugin
     {
         internal const string modname = "BuffPlus";
-        internal const string version = "1.2.0";
+        internal const string version = "1.2.1";
 
         internal const float DefaultAlphaTime = 2f;
 
