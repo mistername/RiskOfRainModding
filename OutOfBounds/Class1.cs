@@ -8,7 +8,7 @@ using UnityEngine;
 namespace NoOutOfBounds
 {
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.mistername.OutOfBounds", "NoOutOfBounds", "0.2.0")]
+    [BepInPlugin("com.mistername.OutOfBounds", "NoOutOfBounds", "0.2.1")]
     public class Teleporter : BaseUnityPlugin
     {
         public void Awake()
