@@ -13,7 +13,7 @@ namespace BuffDisplayAPI
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class CustomBuffDisplay : BaseUnityPlugin
     {
-        const string version = "0.1.1";
+        const string version = "0.1.2";
         const string modname = "BuffDisplayAPI";
 
         private static FieldInfo icons = null;

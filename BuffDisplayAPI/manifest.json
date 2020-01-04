@@ -1,6 +1,6 @@
 {
     "name": "BuffDisplayAPI",
-    "version_number": "0.1.1",
+    "version_number": "0.1.2",
     "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/BuffDisplayAPI",
     "description": "Enables modders to add custom buffs to the buff bar",
     "dependencies": [
