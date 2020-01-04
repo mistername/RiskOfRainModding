@@ -17,7 +17,7 @@
       <HintPath>..\lib\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="MMHOOK_Assembly-CSharp">
-      <HintPath>D:\steam\steamapps\common\Risk of Rain 2\BepInEx\plugins\R2API\MMHOOK_Assembly-CSharp.dll</HintPath>
+      <HintPath>..\lib\MMHOOK_Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="R2API">
       <HintPath>..\lib\R2API.dll</HintPath>
