@@ -178,6 +178,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualTonicRemover", "Visua
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoItemDisplay", "NoItemDisplay\NoItemDisplay.csproj", "{D9061376-181A-4094-B688-8CB30BE502D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoLunarEnigma", "NoLunarEnigma\NoLunarEnigma.csproj", "{BACE2F96-3699-46AB-BFEC-66FF5E7BAE11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -304,6 +306,10 @@ Global
 		{D9061376-181A-4094-B688-8CB30BE502D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9061376-181A-4094-B688-8CB30BE502D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9061376-181A-4094-B688-8CB30BE502D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BACE2F96-3699-46AB-BFEC-66FF5E7BAE11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BACE2F96-3699-46AB-BFEC-66FF5E7BAE11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BACE2F96-3699-46AB-BFEC-66FF5E7BAE11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BACE2F96-3699-46AB-BFEC-66FF5E7BAE11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -344,6 +350,7 @@ Global
 		{22B1C54A-840B-47F4-BD57-DB498535076A} = {368AE344-9485-4974-B15F-CA2C6DDD2E88}
 		{0CAD69CD-19AD-45DC-9B46-DF647B8860FE} = {A6D345FB-3945-47BB-A4B4-0FDE823600C0}
 		{D9061376-181A-4094-B688-8CB30BE502D0} = {368AE344-9485-4974-B15F-CA2C6DDD2E88}
+		{BACE2F96-3699-46AB-BFEC-66FF5E7BAE11} = {368AE344-9485-4974-B15F-CA2C6DDD2E88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED93AF8-E445-4E62-B708-336B584309CC}

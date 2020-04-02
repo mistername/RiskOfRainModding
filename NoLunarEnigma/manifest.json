@@ -1,0 +1,10 @@
+{
+  "name": "NoLunarEnigma",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/mistername/RiskOfRainModding/tree/master/NoLunarEnigma",
+  "description": "Prevents lunar equipment with enigma artifect",
+  "dependencies": [
+    "bbepis-BepInExPack-2.0.0",
+    "tristanmcpherson-R2API-2.1.0"
+  ]
+}
