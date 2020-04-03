@@ -10,7 +10,7 @@ namespace teleporter
     public class NoBossNoWait : BaseUnityPlugin
     {
         internal const string modname = nameof(NoBossNoWait);
-        internal const string version = "1.1.1";
+        internal const string version = "1.1.3";
         public void Awake()
         {
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey(Hj.HjUpdaterAPI.GUID))
@@ -32,8 +32,7 @@ namespace teleporter
             if (!bossGroup) return;
             if (bossGroup != obj) return;
 
-            Run.instance.fixedTime += TeleporterInteraction.instance.remainingChargeTimer;
-            TeleporterInteraction.instance.remainingChargeTimer = 0f;
+            typeof(HoldoutZoneController).GetProperty("charge").SetValue(TeleporterInteraction.instance.holdoutZoneController, 1f);
         }
     }
 }

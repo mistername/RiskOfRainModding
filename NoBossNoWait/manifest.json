@@ -1,9 +1,9 @@
 {
     "name": "NoBossNoWait",
-    "version_number": "1.1.1",
+    "version_number": "1.1.2",
     "website_url": "",
     "description": "charges teleporter if all bosses are dead. ",
     "dependencies": [
-    "bbepis-BepInExPack-2.0.0"
+      "bbepis-BepInExPack-2.0.0"
     ]
 }
