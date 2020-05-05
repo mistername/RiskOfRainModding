@@ -20,6 +20,15 @@
       <HintPath>..\lib\MMHOOK_Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\lib\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\lib\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\lib\MonoMod.Utils.dll</HintPath>
+    </Reference>
     <Reference Include="R2API">
       <HintPath>..\lib\R2API.dll</HintPath>
       <Private>false</Private>

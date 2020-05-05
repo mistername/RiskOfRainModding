@@ -1,38 +1,77 @@
 ﻿using BepInEx;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
+using MonoMod.RuntimeDetour.HookGen;
 using R2API.Utils;
 using RoR2;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using UnityEngine;
 
 namespace teleporter
 {
-    [BepInDependency(R2API.R2API.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency(Hj.HjUpdaterAPI.GUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin("com.mistername." + modname, modname, version)]
     public class NoBossNoWait : BaseUnityPlugin
     {
         internal const string modname = nameof(NoBossNoWait);
         internal const string version = "1.1.3";
-        public void Awake()
+
+        public delegate void Orig(object exception, out string message, out string stacktrace);
+        public delegate void hook_LineNumber(Orig orig, object exception, out string message, out string stacktrace);
+        public delegate string Orig2(Exception self, bool a);
+        public delegate string tmp_hook(Orig2 orig2, Exception self, bool a);
+
+        public delegate string orig3(Exception e, bool a);
+        public delegate string dsad(orig3 orig, Exception e, bool a);
+
+        NoBossNoWait()
         {
-            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey(Hj.HjUpdaterAPI.GUID))
+            new ILHook(typeof(StackTrace).GetMethod("AddFrames", BindingFlags.Instance | BindingFlags.NonPublic), test);
+        }
+
+        private void test(ILContext il)
+        {
+            var cursor = new ILCursor(il);
+            cursor.GotoNext(
+                x => x.MatchCallvirt(typeof(StackFrame).GetMethod("GetFileLineNumber", BindingFlags.Instance | BindingFlags.Public))
+            );
+
+            cursor.RemoveRange(2);
+            cursor.EmitDelegate<Func<StackFrame, string>>(GetLineOrIL);
+        }
+
+        private static string GetLineOrIL(StackFrame instace)
+        {
+            var line = instace.GetFileLineNumber();
+            if (line == 0)
             {
-                Updater();
+                return "IL_" + instace.GetILOffset().ToString("X4");
             }
-            RoR2.BossGroup.onBossGroupDefeatedServer += BossGroup_onBossGroupDefeatedServer;
+
+            return line.ToString();
         }
 
-        private static void Updater()
+        public void Update()
         {
-            Hj.HjUpdaterAPI.Register(modname);
+            if (UnityEngine.Input.GetKeyDown(KeyCode.H))
+            {
+                _ = Exception("H", 0);
+            }
         }
 
-        private void BossGroup_onBossGroupDefeatedServer(RoR2.BossGroup obj)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private Exception Exception(string v, int i)
         {
-            if (!TeleporterInteraction.instance) return;
-            var bossGroup = TeleporterInteraction.instance.GetFieldValue<BossGroup>("bossGroup");
-            if (!bossGroup) return;
-            if (bossGroup != obj) return;
-
-            typeof(HoldoutZoneController).GetProperty("charge").SetValue(TeleporterInteraction.instance.holdoutZoneController, 1f);
+            if (i != 10)
+            {
+                return Exception(v,++i);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
