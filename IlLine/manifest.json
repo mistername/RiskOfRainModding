@@ -1,0 +1,9 @@
+{
+    "name": "IlLine",
+    "version_number": "1.0.0",
+    "website_url": "",
+    "description": "changes the 0 at the end of stacktrace lines to the illine",
+    "dependencies": [
+      "bbepis-BepInExPack-3.2.0"
+    ]
+}
